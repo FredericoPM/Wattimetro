@@ -37,7 +37,7 @@ class _SearchInputState extends State<SearchInput> {
                   ),
                   prefixIcon: Icon(Icons.search, color: Theme.of(context).primaryColor,),
                   suffixIcon: _focus ? IconButton(
-                    icon: Icon(Icons.clear, color: Theme.of(context).canvasColor,),
+                    icon: Icon(Icons.clear, color: Color(0xFFFCF8EF),),
                     onPressed: () {
                       // setState(() { widget.controller.text = ""; });
                       // if(widget.onChanged != null)
