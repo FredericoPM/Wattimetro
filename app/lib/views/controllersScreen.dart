@@ -1,6 +1,6 @@
 import 'package:app/views/sideMenu.dart';
 import 'package:app/views/widgets/cardTemplate.dart';
-import 'package:app/views/widgets/serchInput.dart';
+import 'package:app/views/widgets/searchInput.dart';
 import 'package:flutter/material.dart';
 
 class ControllersScreen extends StatefulWidget {
@@ -43,7 +43,7 @@ class _ControllersScreenState extends State<ControllersScreen> {
           padding: const EdgeInsets.symmetric(horizontal: 20,vertical: 28),
           child: Column(
             children: [
-              SerachInput(),
+              SearchInput(),
               SizedBox(height: 20,),
               CardTemplate(),
             ],

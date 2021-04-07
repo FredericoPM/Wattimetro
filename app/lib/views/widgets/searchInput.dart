@@ -1,12 +1,12 @@
 import 'package:flutter/material.dart';
-class SerachInput extends StatefulWidget {
-  SerachInput({Key key}) : super(key: key);
+class SearchInput extends StatefulWidget {
+  SearchInput({Key key}) : super(key: key);
 
   @override
-  _SerachInputState createState() => _SerachInputState();
+  _SearchInputState createState() => _SearchInputState();
 }
 
-class _SerachInputState extends State<SerachInput> {
+class _SearchInputState extends State<SearchInput> {
   bool _focus = false;
   @override
   Widget build(BuildContext context) {
