@@ -10,7 +10,6 @@ class ControllersScreen extends StatefulWidget {
 
 class _ControllersScreenState extends State<ControllersScreen> {
   @override
-
   Widget build(BuildContext context) {
     return Scaffold(
       drawer: SideMenu(),
@@ -41,11 +40,21 @@ class _ControllersScreenState extends State<ControllersScreen> {
       body: Center(
         child: Padding(
           padding: const EdgeInsets.symmetric(horizontal: 20,vertical: 28),
-          child: Column(
+          child: ListView(
+            primary: false,
+            shrinkWrap: true,
             children: [
               SearchInput(),
               SizedBox(height: 20,),
-              CardTemplate(),
+              CardTemplate(
+                type: "rgb",
+              ),
+              CardTemplate(
+                type: "on/off",
+              ),
+              CardTemplate(
+                type: "slider",
+              ),
             ],
           ),
         ),
