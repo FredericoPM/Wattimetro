@@ -9,7 +9,8 @@ import 'colorPicker.dart';
 
 class CardTemplate extends StatefulWidget {
   String type;
-  CardTemplate({this.type});
+  var childWidget;
+  CardTemplate({this.type, this.childWidget});
   @override
   _CardTemplateState createState() => _CardTemplateState();
 }
@@ -97,9 +98,6 @@ class _CardTemplateState extends State<CardTemplate> {
       break;
       case "rgb":
         return _rgb();
-      break; 
-      case "barChart":
-        return _barChart();
       break;
       case "digitalDisplay":
         return DigitalDisplay(
@@ -150,10 +148,11 @@ class _CardTemplateState extends State<CardTemplate> {
             SizedBox(height: 12),
             Padding(
               padding: EdgeInsets.symmetric(horizontal:9, vertical:0),
-              child: _selectContent(
+              child: widget.childWidget == null ? _selectContent(
                 accentColor: Theme.of(context).accentColor,
                 cardColor: Theme.of(context).cardColor
-              ),
+              )
+              : widget.childWidget,
             ), 
           ],
         ),

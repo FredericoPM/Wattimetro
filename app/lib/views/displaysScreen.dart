@@ -2,6 +2,7 @@ import 'package:app/views/sideMenu.dart';
 import 'package:flutter/material.dart';
 
 import 'widgets/cardTemplate.dart';
+import 'widgets/barChartCard.dart';
 import 'widgets/searchInput.dart';
 
 class DisplaysScreen extends StatefulWidget {
@@ -47,7 +48,7 @@ class _DisplaysScreenState extends State<DisplaysScreen> {
             children: [
               SearchInput(),
               SizedBox(height: 20),
-              CardTemplate(type: "barChart"),
+              BarChartCard(),
               SizedBox(height: 20),
               CardTemplate(type: "digitalDisplay"),
             ],
