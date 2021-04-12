@@ -5,8 +5,10 @@ import 'package:flutter/widgets.dart';
 typedef ColorCodeBuilder = Widget Function(BuildContext context, Color color);
 
 class CircleColorPicker extends StatefulWidget {
+  void Function() onClick;
   CircleColorPicker({
     Key key,
+    this.onClick,
     this.onChanged,
     this.size = const Size(280, 280),
     this.strokeWidth = 2,
@@ -116,7 +118,7 @@ class _CircleColorPickerState extends State<CircleColorPicker>
                               backgroundColor: _color,
                             ),
                             RawMaterialButton(
-                              onPressed: () {},
+                              onPressed: widget.onClick,
                               elevation: 0,
                               fillColor: Theme.of(context).accentColor,
                               child: Icon(

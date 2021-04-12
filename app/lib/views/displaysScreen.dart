@@ -47,7 +47,9 @@ class _DisplaysScreenState extends State<DisplaysScreen> {
             children: [
               SearchInput(),
               SizedBox(height: 20),
-              CardTemplate(type: "barChart",),
+              CardTemplate(type: "barChart"),
+              SizedBox(height: 20),
+              CardTemplate(type: "digitalDisplay"),
             ],
           ),
         ),

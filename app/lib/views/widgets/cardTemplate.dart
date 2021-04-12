@@ -1,6 +1,8 @@
 import 'dart:math';
 
+import 'package:app/views/widgets/digitalDisplay.dart';
 import 'package:app/views/widgets/verticalChartBar.dart';
+import 'package:auto_size_text/auto_size_text.dart';
 import 'package:flutter/material.dart';
 
 import 'colorPicker.dart';
@@ -99,8 +101,13 @@ class _CardTemplateState extends State<CardTemplate> {
       case "barChart":
         return _barChart();
       break;
+      case "digitalDisplay":
+        return DigitalDisplay(
+          label: "",
+        );
+      break;
       default:
-        return Text("ERRO: type undefined '${widget.type}'");
+        return AutoSizeText("ERRO: type undefined '${widget.type}'");
     }
   }
 
@@ -123,10 +130,15 @@ class _CardTemplateState extends State<CardTemplate> {
                   icon: Icon(Icons.create, color: Theme.of(context).accentColor, size: 28,),
                   onPressed: (){}
                 ),
-                Text(
-                  "Teste ${widget.type}",
-                  style: TextStyle(
-                    fontSize: 21,
+                Container(
+                  alignment: Alignment.center,
+                  width: 230,
+                  child: AutoSizeText(
+                    "Teste ${widget.type}",
+                    maxLines: 1,
+                    style: TextStyle(
+                      fontSize: 21,
+                    ),
                   ),
                 ),
                 IconButton(

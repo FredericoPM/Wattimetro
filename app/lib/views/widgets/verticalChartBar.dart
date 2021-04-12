@@ -10,7 +10,6 @@ class VerticalChartBar extends StatelessWidget {
   }
   @override
   Widget build(BuildContext context) {
-    print(fillPercentage);
     return Column(
       children: [
         Container(
@@ -41,6 +40,7 @@ class VerticalChartBar extends StatelessWidget {
             ],
           ),
         ),
+        SizedBox(height: 10,),
         Text(label, style: TextStyle(fontSize: 21, fontWeight: FontWeight.w300),),
       ],
     );
