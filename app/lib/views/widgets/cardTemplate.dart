@@ -1,3 +1,6 @@
+import 'dart:math';
+
+import 'package:app/views/widgets/verticalChartBar.dart';
 import 'package:flutter/material.dart';
 
 import 'colorPicker.dart';
@@ -11,6 +14,16 @@ class CardTemplate extends StatefulWidget {
 
 class _CardTemplateState extends State<CardTemplate> {
   double _sliderState = 0;
+  _barChart(){
+    var randon = Random();
+    return Row(
+      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+      children: [
+        for(int i = 0; i< 7; i++)
+          VerticalChartBar(label: i.toString(), fillPercentage: randon.nextDouble().abs()),
+      ],
+    );
+  }
   //! scroll do color picker conflitando com scroll do list view
   _rgb(){
     return Center(
@@ -83,6 +96,9 @@ class _CardTemplateState extends State<CardTemplate> {
       case "rgb":
         return _rgb();
       break; 
+      case "barChart":
+        return _barChart();
+      break;
       default:
         return Text("ERRO: type undefined '${widget.type}'");
     }

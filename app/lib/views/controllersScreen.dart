@@ -45,13 +45,15 @@ class _ControllersScreenState extends State<ControllersScreen> {
             shrinkWrap: true,
             children: [
               SearchInput(),
-              SizedBox(height: 20,),
+              SizedBox(height: 20),
               CardTemplate(
                 type: "rgb",
               ),
+              SizedBox(height: 20),
               CardTemplate(
                 type: "on/off",
               ),
+              SizedBox(height: 20),
               CardTemplate(
                 type: "slider",
               ),
