@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'controllersScreen.dart';
+import 'controlesScreen.dart';
 import 'displaysScreen.dart';
 class SideMenu extends StatelessWidget {
   const SideMenu({Key key}) : super(key: key);
@@ -36,7 +36,7 @@ class SideMenu extends StatelessWidget {
                         children: [
                           Icon(Icons.lightbulb, color: Theme.of(context).accentColor, size: 30),
                           SizedBox(width: 10,),
-                          Text('Controllers', style: TextStyle(fontSize: 21, fontWeight: FontWeight.w300),),
+                          Text('Controles', style: TextStyle(fontSize: 21, fontWeight: FontWeight.w300),),
                         ],
                       ),
                     ),

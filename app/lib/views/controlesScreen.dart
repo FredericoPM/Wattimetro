@@ -3,6 +3,8 @@ import 'package:app/views/widgets/cardTemplate.dart';
 import 'package:app/views/widgets/searchInput.dart';
 import 'package:flutter/material.dart';
 
+import 'controleForm.dart';
+
 class ControllersScreen extends StatefulWidget {
   @override
   _ControllersScreenState createState() => _ControllersScreenState();
@@ -22,7 +24,7 @@ class _ControllersScreenState extends State<ControllersScreen> {
           ),
         ),
         title: Text(
-            "Controllers", 
+            "Controles",
             style: TextStyle(
               fontWeight: FontWeight.w300,
               fontSize: 28
@@ -32,7 +34,7 @@ class _ControllersScreenState extends State<ControllersScreen> {
           IconButton(
             icon: Icon(Icons.add, size: 30),
             onPressed: (){
-
+              Navigator.push(context, MaterialPageRoute(builder: (context) => ControllerForm()));
             }
           )
         ],

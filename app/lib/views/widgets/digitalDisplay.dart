@@ -11,10 +11,6 @@ class DigitalDisplay extends StatelessWidget {
         height: 100,
         decoration:BoxDecoration(
           borderRadius: BorderRadius.all(Radius.circular(10.5)),
-          border: Border.all(
-            color: Theme.of(context).accentColor,
-            width: 1,
-          ),
           color: Theme.of(context).primaryColor,
         ),
         child: Padding(

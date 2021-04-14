@@ -12,7 +12,7 @@ class _BarChardtModalState extends State<BarChardtModal> {
   @override
   Widget build(BuildContext context) {
     return Container(
-      height: 430,
+      height: 480,
       child: Column(
         children: [
           Container(
@@ -35,7 +35,65 @@ class _BarChardtModalState extends State<BarChardtModal> {
               ),
             ),
           ),
-          SizedBox(height: 15),
+          Padding(
+            padding: const EdgeInsets.fromLTRB(20,20,20,10),
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+                Container(
+                  height: 30,
+                  width: 75,
+                  decoration: BoxDecoration(
+                    borderRadius: BorderRadius.all(Radius.circular(15)),
+                    color: Color(0xFF585471),
+                  ),
+                  child: Center(
+                    child: Text(
+                      "1H",
+                      style: TextStyle(
+                        fontSize: 21,
+                        // color:,
+                      ),
+                    )
+                  ),
+                ),
+                Container(
+                  height: 30,
+                  width: 75,
+                  decoration: BoxDecoration(
+                    borderRadius: BorderRadius.all(Radius.circular(15)),
+                    color: Color(0xFF585471),
+                  ),
+                  child: Center(
+                    child: Text(
+                      "1D",
+                      style: TextStyle(
+                        fontSize: 21,
+                        // color:,
+                      ),
+                    )
+                  ),
+                ),
+                Container(
+                  height: 30,
+                  width: 75,
+                  decoration: BoxDecoration(
+                    borderRadius: BorderRadius.all(Radius.circular(15)),
+                    color: Theme.of(context).accentColor,
+                  ),
+                  child: Center(
+                    child: Text(
+                      "7D",
+                      style: TextStyle(
+                        fontSize: 21,
+                        color: Theme.of(context).primaryColor,
+                      ),
+                    )
+                  ),
+                ),
+              ],
+            ),
+          ),
           for(int i=0; i<7; i++)
             Padding(
               padding: const EdgeInsets.symmetric(
