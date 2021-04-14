@@ -18,6 +18,10 @@ dev_dependencies:
     sdk: flutter
 flutter:
   uses-material-design: true
+  assets:
+    - assets/images/controllers_empty_image.svg
+    - assets/images/displays_empty_image.svg
+    - assets/images/no_connection.svg
   fonts:
     - family: RobotoMono
       fonts:

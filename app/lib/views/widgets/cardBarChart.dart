@@ -4,12 +4,12 @@ import 'package:app/views/widgets/cardTemplate.dart';
 import 'package:app/views/widgets/verticalChartBar.dart';
 import 'package:flutter/material.dart';
 
-class BarChartCard extends StatefulWidget {
+class CardBarChart extends StatefulWidget {
   @override
-  _BarChartCardState createState() => _BarChartCardState();
+  _CardBarChartState createState() => _CardBarChartState();
 }
 
-class _BarChartCardState extends State<BarChartCard> {
+class _CardBarChartState extends State<CardBarChart> {
   var randon = Random();
    void _showModalBottomSheet(BuildContext context) {
     showModalBottomSheet<void>(
