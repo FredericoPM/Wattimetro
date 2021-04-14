@@ -5,12 +5,12 @@ import 'package:flutter/material.dart';
 
 import 'controleForm.dart';
 
-class ControllersScreen extends StatefulWidget {
+class ControleScreen extends StatefulWidget {
   @override
-  _ControllersScreenState createState() => _ControllersScreenState();
+  _ControleScreenState createState() => _ControleScreenState();
 }
 
-class _ControllersScreenState extends State<ControllersScreen> {
+class _ControleScreenState extends State<ControleScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -34,7 +34,7 @@ class _ControllersScreenState extends State<ControllersScreen> {
           IconButton(
             icon: Icon(Icons.add, size: 30),
             onPressed: (){
-              Navigator.push(context, MaterialPageRoute(builder: (context) => ControllerForm()));
+              Navigator.push(context, MaterialPageRoute(builder: (context) => ControleForm()));
             }
           )
         ],

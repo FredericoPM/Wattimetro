@@ -1,6 +1,7 @@
 import 'package:app/views/sideMenu.dart';
 import 'package:flutter/material.dart';
 
+import 'displayForm.dart';
 import 'widgets/cardTemplate.dart';
 import 'widgets/barChartCard.dart';
 import 'widgets/searchInput.dart';
@@ -35,9 +36,7 @@ class _DisplaysScreenState extends State<DisplaysScreen> {
         actions: [
           IconButton(
             icon: Icon(Icons.add, size: 30),
-            onPressed: (){
-
-            }
+            onPressed: ()=>Navigator.push(context, MaterialPageRoute(builder: (context) => DisplayForm())),
           )
         ],
       ),

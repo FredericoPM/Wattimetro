@@ -1,15 +1,12 @@
-import 'package:app/views/sideMenu.dart';
-import 'package:app/views/widgets/cardTemplate.dart';
 import 'package:app/views/widgets/dataInput.dart';
-import 'package:app/views/widgets/searchInput.dart';
 import 'package:flutter/material.dart';
 
-class ControllerForm extends StatefulWidget {
+class ControleForm extends StatefulWidget {
   @override
-  _ControllerFormState createState() => _ControllerFormState();
+  _ControleFormState createState() => _ControleFormState();
 }
 
-class _ControllerFormState extends State<ControllerForm> {
+class _ControleFormState extends State<ControleForm> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -37,14 +34,66 @@ class _ControllerFormState extends State<ControllerForm> {
       ),
       body: Center(
         child: Padding(
-          padding: const EdgeInsets.symmetric(horizontal: 20,vertical: 28),
-          child: ListView(
-            primary: false,
-            shrinkWrap: true,
+          padding: const EdgeInsets.fromLTRB(20,20,20,28),
+          child: Column(
             children: [
-              DataImput(
-
+              Container(
+                height: MediaQuery.of(context).size.height-AppBar().preferredSize.height-148,
+                child: ListView(
+                  children: [
+                    SizedBox(height:8),
+                    DataImput(
+                      labelText: "Nome",
+                    ),
+                  ],
+                ),
               ),
+              SizedBox(height:28),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.spaceAround,
+                children: [
+                  RaisedButton(
+                    color: Theme.of(context).errorColor,
+                    onPressed: (){},
+                    shape: new RoundedRectangleBorder(
+                      borderRadius: new BorderRadius.circular(10.0),
+                    ),
+                    child: Container(
+                      height: 48,
+                      width: 130,
+                      child: Center(
+                        child: Text(
+                          "Cancelar",
+                          style: TextStyle(
+                            fontSize: 21,
+                            color: Color(0xFFFCF8EF),
+                          ),
+                        )
+                      )
+                    ),
+                  ),
+                  RaisedButton(
+                    color: Color(0xFF6ACB67),
+                    onPressed: (){},
+                    shape: new RoundedRectangleBorder(
+                      borderRadius: new BorderRadius.circular(10.0),
+                    ),
+                    child: Container(
+                      height: 48,
+                      width: 130,
+                      child: Center(
+                        child: Text(
+                          "Concluir",
+                          style: TextStyle(
+                            fontSize: 21,
+                            color: Color(0xFFFCF8EF),
+                          ),
+                        )
+                      )
+                    ),
+                  ),
+                ],
+              )
             ],
           ),
         ),

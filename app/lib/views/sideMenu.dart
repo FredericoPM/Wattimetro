@@ -27,7 +27,7 @@ class SideMenu extends StatelessWidget {
                   onTap: () {
                     Navigator.pop(context);
                     Navigator.pop(context);
-                    Navigator.push(context, MaterialPageRoute(builder: (context) => ControllersScreen()));
+                    Navigator.push(context, MaterialPageRoute(builder: (context) => ControleScreen()));
                   },
                   child: Padding(
                     padding: const EdgeInsets.fromLTRB(10, 10, 10, 10),

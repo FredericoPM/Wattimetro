@@ -48,14 +48,14 @@ class _SearchInputState extends State<SearchInput> {
               filled: true,
               fillColor: Color(0xFF585471),
               enabledBorder: OutlineInputBorder(
-                borderRadius: BorderRadius.circular(7.5),
+                borderRadius: BorderRadius.circular(10),
                 borderSide: BorderSide(
                   width: 1,
                   color: Color(0xFF585471),
                 ),
               ),
               focusedBorder: OutlineInputBorder(
-                borderRadius: BorderRadius.circular(7.5),
+                borderRadius: BorderRadius.circular(10),
                 borderSide: BorderSide(
                   width: 1,
                   color: Theme.of(context).accentColor,
