@@ -1,9 +1,13 @@
+import 'package:app/models/controle.dart';
+import 'package:app/models/display.dart';
 import 'package:auto_size_text/auto_size_text.dart';
 import 'package:flutter/material.dart';
 
 class CardTemplate extends StatefulWidget {
   var childWidget;
-  CardTemplate({this.childWidget});
+  Controle controle;
+  Display display;
+  CardTemplate({this.childWidget, this.controle, this.display});
   @override
   _CardTemplateState createState() => _CardTemplateState();
 }
@@ -32,7 +36,7 @@ class _CardTemplateState extends State<CardTemplate> {
                   alignment: Alignment.center,
                   width: 230,
                   child: AutoSizeText(
-                    "Teste",
+                    widget.controle.name,
                     maxLines: 1,
                     style: TextStyle(
                       fontSize: 21,
@@ -40,8 +44,21 @@ class _CardTemplateState extends State<CardTemplate> {
                   ),
                 ),
                 IconButton(
-                  icon: Icon(Icons.favorite, color: Theme.of(context).accentColor, size: 28), 
-                  onPressed: (){}
+                  icon: Icon(
+                    widget.controle == null 
+                      ? widget.display.favorite ? Icons.favorite : Icons.favorite_outline 
+                      : widget.controle.favorite ? Icons.favorite : Icons.favorite_outline,
+                    color: Theme.of(context).accentColor,
+                    size: 28
+                  ), 
+                  onPressed: (){
+                    setState(() {
+                      if(widget.controle != null)
+                        widget.controle.favorite = !widget.controle.favorite;
+                      else
+                        widget.display.favorite = !widget.display.favorite;
+                    });
+                  }
                 )
               ],
             ),

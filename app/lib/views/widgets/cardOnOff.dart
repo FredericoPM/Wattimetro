@@ -1,8 +1,11 @@
+import 'package:app/models/controle.dart';
 import 'package:app/views/widgets/cardTemplate.dart';
 import 'package:flutter/material.dart';
 
 
 class CardOnOff extends StatefulWidget {
+  Controle controle;
+  CardOnOff({this.controle});
   @override
   _CardOnOffState createState() => _CardOnOffState();
 }
@@ -12,6 +15,7 @@ class _CardOnOffState extends State<CardOnOff> {
   @override
   Widget build(BuildContext context) {
     return CardTemplate(
+      controle: widget.controle,
       childWidget:RawMaterialButton(
         onPressed: () {},
         elevation: 2.0,

@@ -1,8 +1,11 @@
+import 'package:app/models/controle.dart';
 import 'package:app/views/widgets/cardTemplate.dart';
 import 'package:flutter/material.dart';
 
 
 class CardSlider extends StatefulWidget {
+  Controle controle;
+  CardSlider({this.controle});
   @override
   _CardSliderState createState() => _CardSliderState();
 }
@@ -12,6 +15,7 @@ class _CardSliderState extends State<CardSlider> {
   @override
   Widget build(BuildContext context) {
     return CardTemplate(
+      controle: widget.controle,
       childWidget: Row(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [

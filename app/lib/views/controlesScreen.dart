@@ -1,3 +1,5 @@
+import 'package:app/controllers/controleList.dart';
+import 'package:app/models/controle.dart';
 import 'package:app/views/sideMenu.dart';
 import 'package:app/views/widgets/cardOnOff.dart';
 import 'package:app/views/widgets/cardRGB.dart';
@@ -15,6 +17,43 @@ class ControleScreen extends StatefulWidget {
 
 class _ControleScreenState extends State<ControleScreen> {
   bool available = true;
+  ControleList controleList = ControleList();
+
+  selectCard(Controle controle){
+    switch(controle.type){
+      case "RGB":
+        return Column(
+          children: [
+            SizedBox(height: 20),
+            CardRGB(
+              controle: controle,
+            ),
+          ],
+        );
+      break;
+      case "On/Off":
+        return Column(
+          children: [
+            SizedBox(height: 20),
+            CardOnOff(
+              controle: controle,
+            ),
+          ],
+        );
+      break;
+      case "Slider":
+        return Column(
+          children: [
+            SizedBox(height: 20),
+            CardSlider(
+              controle: controle,
+            ),
+          ],
+        );
+      break;
+    }
+  }
+  
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -38,7 +77,13 @@ class _ControleScreenState extends State<ControleScreen> {
           IconButton(
             icon: Icon(Icons.add, size: 30),
             onPressed: (){
-              Navigator.push(context, MaterialPageRoute(builder: (context) => ControleForm()));
+              Navigator.push(context, MaterialPageRoute(builder: (context) => ControleForm(
+                add: (controle){
+                  setState(() {
+                    controleList.add(controle);
+                  });
+                },
+              )));
             }
           )
         ],
@@ -47,16 +92,10 @@ class _ControleScreenState extends State<ControleScreen> {
         child: Padding(
           padding: const EdgeInsets.symmetric(horizontal: 20,vertical: 28),
           child: available ? ListView(
-            primary: false,
-            shrinkWrap: true,
             children: [
               SearchInput(),
-              SizedBox(height: 20),
-              CardRGB(),
-              SizedBox(height: 20),
-              CardOnOff(),
-              SizedBox(height: 20),
-              CardSlider(),
+              for(var controle in controleList.controles)
+                selectCard(controle),
             ],
           )
           : Opacity(

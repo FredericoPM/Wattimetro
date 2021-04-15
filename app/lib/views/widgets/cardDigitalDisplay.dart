@@ -1,9 +1,12 @@
+import 'package:app/models/display.dart';
 import 'package:app/views/widgets/cardTemplate.dart';
 import 'package:auto_size_text/auto_size_text.dart';
 import 'package:flutter/material.dart';
 
 
 class CardDigitalDisplay extends StatefulWidget {
+  Display display;
+  CardDigitalDisplay({this.display});
   @override
   _CardDigitalDisplayState createState() => _CardDigitalDisplayState();
 }
@@ -13,6 +16,7 @@ class _CardDigitalDisplayState extends State<CardDigitalDisplay> {
   @override
   Widget build(BuildContext context) {
     return CardTemplate(
+      display: widget.display,
       childWidget:Container(
         height: 100,
         decoration:BoxDecoration(

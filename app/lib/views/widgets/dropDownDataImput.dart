@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
 class DropDownDataImput extends StatefulWidget {
   String labelText;
+  String errorText;
+  TextEditingController controller;
   List<String> options;
-  DropDownDataImput({this.labelText, this.options});
+  DropDownDataImput({this.labelText, this.options, this.errorText, this.controller});
   @override
   _DropDownDataImputState createState() => _DropDownDataImputState();
 }
@@ -23,7 +25,7 @@ class _DropDownDataImputState extends State<DropDownDataImput> {
         isExpanded: true,
         iconEnabledColor: Color(0xFFFCF8EF),
         dropdownColor: Color(0xFF615C7D),
-        validator: (value) => value == null ? 'Selecione o tipo!' : null,
+        validator:widget.errorText != null ? (value) => value == null ? widget.errorText : null : null,
         items: [
           for(var option in widget.options)
             DropdownMenuItem(
@@ -33,6 +35,7 @@ class _DropDownDataImputState extends State<DropDownDataImput> {
         ],
         onChanged: (newValue) {
           setState(() =>  _formvalue = newValue);
+          widget.controller.text = newValue;
         },
         value: _formvalue,
         style: TextStyle(color: Color(0xFFFCF8EF), fontSize: 16),

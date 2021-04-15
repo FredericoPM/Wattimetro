@@ -1,8 +1,9 @@
 import 'package:flutter/material.dart';
 class DataImput extends StatefulWidget {
   String labelText;
-  DataImput({this.labelText});
-
+  String errorText;
+  TextEditingController controller;
+  DataImput({this.labelText, this.controller, this.errorText});
   @override
   _DataImputState createState() => _DataImputState();
 }
@@ -15,11 +16,15 @@ class _DataImputState extends State<DataImput> {
         child: Focus(
           onFocusChange: (focus)  {
             setState(() { _focus = focus; });
-            // if(!focus && widget.onFocusExit != null){
-              // widget.onFocusExit();
-            // }
           },
           child:TextFormField(
+            controller: widget.controller,
+            validator: widget.errorText == "" ? null : (s) {
+              if (s.isEmpty)
+                return widget.errorText;
+              else
+                return null;
+            },
             style: TextStyle(color: Color(0xFFFCF8EF), fontSize: 16),
             decoration: InputDecoration(
               contentPadding: EdgeInsets.symmetric(vertical:15, horizontal: 16),
@@ -35,9 +40,7 @@ class _DataImputState extends State<DataImput> {
               suffixIcon: _focus ? IconButton(
                 icon: Icon(Icons.clear, color: Color(0xFFFCF8EF),),
                 onPressed: () {
-                  // setState(() { widget.controller.text = ""; });
-                  // if(widget.onChanged != null)
-                  //   widget.onChanged(widget.controller.text);
+                  setState(() { widget.controller.text = ""; });
                 },
               ) : null,
               filled: true,

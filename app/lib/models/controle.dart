@@ -16,7 +16,7 @@ class Controle {
   int _id;
   String _name;
   String _type;
-  bool _favorite;
+  bool _favorite = false;
   String _broker;
   String _topic;
   String _rgbValue;
@@ -37,12 +37,12 @@ class Controle {
     this._id = id;
     this._name = name;
     this._type = type;
-    this._favorite = favorite;
+    this._favorite = favorite == null ? false : favorite;
     this._broker = broker;
     this._topic = topic;
-    this._rgbValue = rgbValue;
-    this._onState = onState;
-    this._sliderState = sliderState;
+    this._rgbValue = rgbValue == null ? "0,0,0" : rgbValue;
+    this._onState = onState == null ? false : onState;
+    this._sliderState = sliderState == null ? 0.0 : sliderState;
   }
 
   int get id => _id;

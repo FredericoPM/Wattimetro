@@ -1,10 +1,12 @@
 import 'dart:math';
+import 'package:app/models/display.dart';
 import 'package:app/views/barChartModal.dart';
 import 'package:app/views/widgets/cardTemplate.dart';
 import 'package:app/views/widgets/verticalChartBar.dart';
 import 'package:flutter/material.dart';
 
 class CardBarChart extends StatefulWidget {
+  Display display;
   @override
   _CardBarChartState createState() => _CardBarChartState();
 }
@@ -31,6 +33,7 @@ class _CardBarChartState extends State<CardBarChart> {
     return GestureDetector(
       onTap: () => _showModalBottomSheet(context),
       child: CardTemplate(
+        display: widget.display,
         childWidget: Row(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [

@@ -1,13 +1,27 @@
+import 'package:app/models/controle.dart';
 import 'package:app/views/widgets/dataInput.dart';
 import 'package:app/views/widgets/dropDownDataImput.dart';
 import 'package:flutter/material.dart';
 
 class ControleForm extends StatefulWidget {
+  void Function(Controle controle) add;
+  ControleForm({this.add});
   @override
   _ControleFormState createState() => _ControleFormState();
 }
 
 class _ControleFormState extends State<ControleForm> {
+  //! ao tentar submeter o formulario vazio ocorre um problema visual com campos
+  final _formKey = GlobalKey<FormState>();
+  TextEditingController _nomeController = TextEditingController();
+  TextEditingController _tipoController = TextEditingController();
+  TextEditingController _brokerController = TextEditingController();
+  TextEditingController _topicoController = TextEditingController();
+
+  void goBack(var context){
+    Navigator.pop(context);
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -15,7 +29,7 @@ class _ControleFormState extends State<ControleForm> {
         centerTitle: true,
         leading: IconButton(
           icon: Icon(Icons.keyboard_backspace, size: 30),
-          onPressed: () => Navigator.pop(context),
+          onPressed: () => goBack(context),
         ),
         title: Text(
             "Novo Controle", 
@@ -32,30 +46,41 @@ class _ControleFormState extends State<ControleForm> {
             children: [
               Container(
                 height: MediaQuery.of(context).size.height-AppBar().preferredSize.height-148,
-                child: ListView(
-                  children: [
-                    SizedBox(height:8),
-                    DataImput(
-                      labelText: "Nome",
-                    ),
-                    SizedBox(height:20),
-                    DropDownDataImput(
-                      labelText: "Tipo do Controle",
-                      options: [
-                        "On/Off",
-                        "Slider",
-                        "RGB"
-                      ],
-                    ),
-                    SizedBox(height:20),
-                    DataImput(
-                      labelText: "Broker",
-                    ),
-                    SizedBox(height:20),
-                    DataImput(
-                      labelText: "Topico",
-                    ),
-                  ],
+                child: Form(
+                  key: _formKey,
+                  child: ListView(
+                    children: [
+                      SizedBox(height:8),
+                      DataImput(
+                        labelText: "Nome",
+                        controller: _nomeController,
+                        errorText: "erro",
+                      ),
+                      SizedBox(height:20),
+                      DropDownDataImput(
+                        labelText: "Tipo do Controle",
+                        controller: _tipoController,
+                        errorText: "erro",
+                        options: [
+                          "On/Off",
+                          "Slider",
+                          "RGB"
+                        ],
+                      ),
+                      SizedBox(height:20),
+                      DataImput(
+                        labelText: "Broker",
+                        errorText: "erro",
+                        controller: _brokerController,
+                      ),
+                      SizedBox(height:20),
+                      DataImput(
+                        labelText: "Topico",
+                        errorText: "erro",
+                        controller: _topicoController,
+                      ),
+                    ],
+                  ),
                 ),
               ),
               SizedBox(height:28),
@@ -64,7 +89,7 @@ class _ControleFormState extends State<ControleForm> {
                 children: [
                   RaisedButton(
                     color: Theme.of(context).errorColor,
-                    onPressed: (){},
+                    onPressed: () => goBack(context),
                     shape: new RoundedRectangleBorder(
                       borderRadius: new BorderRadius.circular(10.0),
                     ),
@@ -84,7 +109,19 @@ class _ControleFormState extends State<ControleForm> {
                   ),
                   RaisedButton(
                     color: Color(0xFF6ACB67),
-                    onPressed: (){},
+                    onPressed: (){
+                       if (_formKey.currentState.validate()) {
+                         widget.add(
+                           Controle(
+                             name: _nomeController.text,
+                             type: _tipoController.text,
+                             broker: _brokerController.text,
+                             topic: _topicoController.text
+                           )
+                         );
+                         Navigator.pop(context);
+                       }
+                    },
                     shape: new RoundedRectangleBorder(
                       borderRadius: new BorderRadius.circular(10.0),
                     ),
