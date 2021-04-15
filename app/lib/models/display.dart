@@ -41,12 +41,12 @@ class Display {
     this._id = id;
     this._name = name;
     this._type = type;
-    this._favorite = favorite;
+    this._favorite = favorite == null ? false : favorite;
     this._broker = broker;
     this._topic = topic;
     this._measurement = measurement;
-    this._numericalValue = numericalValue;
-    this._numericalValueList = numericalValueList;
+    this._numericalValue = numericalValue == null ? 0.0 : numericalValue;
+    this._numericalValueList = numericalValueList == null ? [] : numericalValueList;
   }
 
   int get id => _id;

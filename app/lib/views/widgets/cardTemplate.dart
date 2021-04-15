@@ -36,7 +36,7 @@ class _CardTemplateState extends State<CardTemplate> {
                   alignment: Alignment.center,
                   width: 230,
                   child: AutoSizeText(
-                    widget.controle.name,
+                    widget.controle == null ? widget.display.name : widget.controle.name,
                     maxLines: 1,
                     style: TextStyle(
                       fontSize: 21,

@@ -7,6 +7,7 @@ import 'package:flutter/material.dart';
 
 class CardBarChart extends StatefulWidget {
   Display display;
+  CardBarChart({this.display});
   @override
   _CardBarChartState createState() => _CardBarChartState();
 }

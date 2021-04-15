@@ -1,3 +1,5 @@
+import 'package:app/controllers/displaysList.dart';
+import 'package:app/models/display.dart';
 import 'package:app/views/sideMenu.dart';
 import 'package:app/views/widgets/cardDigitalDisplay.dart';
 import 'package:flutter/material.dart';
@@ -17,6 +19,32 @@ class DisplaysScreen extends StatefulWidget {
 
 class _DisplaysScreenState extends State<DisplaysScreen> {
   bool available = true;
+  DisplayList displayList = DisplayList();
+  selectCard(Display display){
+    switch(display.type){
+      case "Grafico":
+        return Column(
+          children: [
+            SizedBox(height: 20),
+            CardBarChart(
+              display: display,
+            ),
+          ],
+        );
+      break;
+      case "Digital":
+        return Column(
+          children: [
+            SizedBox(height: 20),
+            CardDigitalDisplay(
+              display: display,
+            ),
+          ],
+        );
+      break;
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -39,7 +67,13 @@ class _DisplaysScreenState extends State<DisplaysScreen> {
         actions: [
           IconButton(
             icon: Icon(Icons.add, size: 30),
-            onPressed: ()=>Navigator.push(context, MaterialPageRoute(builder: (context) => DisplayForm())),
+            onPressed: ()=>Navigator.push(context, MaterialPageRoute(builder: (context) => DisplayForm(
+              add: (display){
+                setState(() {
+                  displayList.add(display);
+                });
+              }
+            ))),
           )
         ],
       ),
@@ -49,10 +83,8 @@ class _DisplaysScreenState extends State<DisplaysScreen> {
           child: available ? Column(
             children: [
               SearchInput(),
-              SizedBox(height: 20),
-              CardBarChart(),
-              SizedBox(height: 20),
-              CardDigitalDisplay(),
+              for(var display in displayList.displays)
+                selectCard(display),
             ],
           )
           : Opacity(
