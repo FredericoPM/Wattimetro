@@ -16,8 +16,8 @@ class ControleScreen extends StatefulWidget {
 }
 
 class _ControleScreenState extends State<ControleScreen> {
-  bool available = true;
   ControleList controleList = ControleList();
+  bool available;
 
   selectCard(Controle controle){
     switch(controle.type){
@@ -56,6 +56,7 @@ class _ControleScreenState extends State<ControleScreen> {
   
   @override
   Widget build(BuildContext context) {
+    available = controleList.controles.length > 0;
     return Scaffold(
       drawer: SideMenu(),
       appBar:AppBar(

@@ -18,8 +18,8 @@ class DisplaysScreen extends StatefulWidget {
 }
 
 class _DisplaysScreenState extends State<DisplaysScreen> {
-  bool available = true;
   DisplayList displayList = DisplayList();
+  bool available;
   selectCard(Display display){
     switch(display.type){
       case "Grafico":
@@ -47,6 +47,7 @@ class _DisplaysScreenState extends State<DisplaysScreen> {
 
   @override
   Widget build(BuildContext context) {
+    available = displayList.displays.length > 0;
     return Scaffold(
       drawer: SideMenu(),
       appBar:AppBar(
