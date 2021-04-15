@@ -1,15 +1,15 @@
 import 'package:flutter/material.dart';
-class DropDownDataImput extends StatefulWidget {
+class DropDownDataInput extends StatefulWidget {
   String labelText;
   String errorText;
   TextEditingController controller;
   List<String> options;
-  DropDownDataImput({this.labelText, this.options, this.errorText, this.controller});
+  DropDownDataInput({this.labelText, this.options, this.errorText, this.controller});
   @override
-  _DropDownDataImputState createState() => _DropDownDataImputState();
+  _DropDownDataInputState createState() => _DropDownDataInputState();
 }
 
-class _DropDownDataImputState extends State<DropDownDataImput> {
+class _DropDownDataInputState extends State<DropDownDataInput> {
   String _formvalue;
   bool _focus = false;
   @override

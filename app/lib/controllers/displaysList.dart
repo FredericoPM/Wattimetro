@@ -12,4 +12,7 @@ class DisplayList{
   void update(Display display){
     print("update");
   }
+  List<Display> searchByName(String name){
+    return _displays.where((display) => display.name == name).toList();
+  }
 }

@@ -16,9 +16,10 @@ class ControleScreen extends StatefulWidget {
 }
 
 class _ControleScreenState extends State<ControleScreen> {
+  TextEditingController _searchController = TextEditingController();
   //TODO: transformar o controleList em um provider
   ControleList controleList = ControleList();
-  bool available;
+  List<Controle> controles = [];
   selectCard(Controle controle){
     switch(controle.type){
       case "RGB":
@@ -85,8 +86,11 @@ class _ControleScreenState extends State<ControleScreen> {
   }
   
   @override
+  void initState() { 
+    super.initState();
+    controles = controleList.controles;
+  }
   Widget build(BuildContext context) {
-    available = controleList.controles.length > 0;
     return Scaffold(
       drawer: SideMenu(),
       appBar:AppBar(
@@ -122,9 +126,16 @@ class _ControleScreenState extends State<ControleScreen> {
       body: Center(
         child: Padding(
           padding: const EdgeInsets.symmetric(horizontal: 20,vertical: 28),
-          child: available ? ListView(
+          child: controles.length > 0 ? ListView(
             children: [
-              SearchInput(),
+              SearchInput(
+                controller: _searchController,
+                onChange: (text) =>{
+                  setState(() {
+                    controles = controleList.searchByName(text);
+                  })
+                },
+              ),
               for(var controle in controleList.controles)
                 selectCard(controle),
             ],

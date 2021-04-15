@@ -3,7 +3,7 @@ import 'package:app/views/widgets/dataInput.dart';
 import 'package:auto_size_text/auto_size_text.dart';
 import 'package:flutter/material.dart';
 
-import 'widgets/dropDownDataImput.dart';
+import 'widgets/dropDownDataInput.dart';
 
 class DisplayForm extends StatefulWidget {
   void Function(Display display) add;
@@ -81,7 +81,7 @@ class _DisplayFormState extends State<DisplayForm> {
                         errorText: "erro",
                       ),
                       SizedBox(height:20),
-                      DropDownDataImput(
+                      DropDownDataInput(
                         labelText: "Tipo do Display",
                         controller: _tipoController,
                         errorText: "erro",

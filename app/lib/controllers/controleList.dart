@@ -12,4 +12,7 @@ class ControleList{
   void update(Controle controle){
     print("update");
   }
+  List<Controle> searchByName(String name){
+    return _controles.where((controle) => controle.name.substring(0, name.length) == name).toList();
+  }
 }

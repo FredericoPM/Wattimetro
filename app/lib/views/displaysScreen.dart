@@ -6,7 +6,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 
 import 'displayForm.dart';
-import 'widgets/cardTemplate.dart';
 import 'widgets/cardBarChart.dart';
 import 'widgets/searchInput.dart';
 
@@ -18,9 +17,10 @@ class DisplaysScreen extends StatefulWidget {
 }
 
 class _DisplaysScreenState extends State<DisplaysScreen> {
+  TextEditingController _searchController = TextEditingController();
   //TODO: transformar o displayList em um provider
   DisplayList displayList = DisplayList();
-  bool available;
+  List<Display> displays = [];
   selectCard(Display display){
     switch(display.type){
       case "Grafico":
@@ -65,10 +65,12 @@ class _DisplaysScreenState extends State<DisplaysScreen> {
       break;
     }
   }
-
   @override
+  void initState() { 
+    super.initState();
+    displays = displayList.displays;
+  }
   Widget build(BuildContext context) {
-    available = displayList.displays.length > 0;
     return Scaffold(
       drawer: SideMenu(),
       appBar:AppBar(
@@ -102,9 +104,16 @@ class _DisplaysScreenState extends State<DisplaysScreen> {
       body: Center(
         child: Padding(
           padding: const EdgeInsets.symmetric(horizontal: 20,vertical: 28),
-          child: available ? ListView(
+          child: displays.length > 0 ? ListView(
             children: [
-              SearchInput(),
+              SearchInput(
+                controller: _searchController,
+                onChange: (text) =>{
+                  setState(() {
+                    displays = displayList.searchByName(text);
+                  })
+                },
+              ),
               for(var display in displayList.displays)
                 selectCard(display),
             ],

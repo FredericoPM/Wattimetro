@@ -1,6 +1,6 @@
 import 'package:app/models/controle.dart';
 import 'package:app/views/widgets/dataInput.dart';
-import 'package:app/views/widgets/dropDownDataImput.dart';
+import 'package:app/views/widgets/dropDownDataInput.dart';
 import 'package:flutter/material.dart';
 
 class ControleForm extends StatefulWidget {
@@ -79,7 +79,7 @@ class _ControleFormState extends State<ControleForm> {
                         errorText: "erro",
                       ),
                       SizedBox(height:20),
-                      DropDownDataImput(
+                      DropDownDataInput(
                         labelText: "Tipo do Controle",
                         controller: _tipoController,
                         errorText: "erro",

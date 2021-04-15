@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
 class SearchInput extends StatefulWidget {
-  SearchInput({Key key}) : super(key: key);
-
+  TextEditingController controller;
+  void Function(String text) onChange;
+  SearchInput({this.controller, this.onChange});
   @override
   _SearchInputState createState() => _SearchInputState();
 }
@@ -19,10 +20,8 @@ class _SearchInputState extends State<SearchInput> {
             // }
           },
           child:TextFormField(
-            onChanged: (text) => {
-              // if(widget.onChanged != null)
-              //   widget.onChanged(text)
-            },
+            controller: widget.controller,
+            onChanged: (text) => widget.onChange(text),
             style: TextStyle(color: Color(0xFFFCF8EF)),
             decoration: InputDecoration(
               contentPadding: EdgeInsets.fromLTRB(16,8,16,8),
@@ -40,9 +39,7 @@ class _SearchInputState extends State<SearchInput> {
               suffixIcon: _focus ? IconButton(
                 icon: Icon(Icons.clear, color: Color(0xFFFCF8EF),),
                 onPressed: () {
-                  // setState(() { widget.controller.text = ""; });
-                  // if(widget.onChanged != null)
-                  //   widget.onChanged(widget.controller.text);
+                  setState(() { widget.controller.text = ""; });
                 },
               ) : null,
               filled: true,
