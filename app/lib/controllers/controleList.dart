@@ -7,5 +7,9 @@ class ControleList{
     _controles.add(controle);
   }
   void delete(Controle controle){
+    print("delete");
+  }
+  void update(Controle controle){
+    print("update");
   }
 }

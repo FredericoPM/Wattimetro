@@ -10,14 +10,18 @@ class CardTemplate extends StatefulWidget {
   var childWidget;
   Display display;
   void Function(Display display) displayDelete;
+  void Function(Display display) displayUpdate;
   Controle controle;
   void Function(Controle controle) controleDelete;
+  void Function(Controle controle) controleUpdate;
   CardTemplate({
     this.childWidget,
     this.controle,
     this.display,
     this.controleDelete,
-    this.displayDelete
+    this.displayDelete,
+    this.controleUpdate,
+    this.displayUpdate
   });
   @override
   _CardTemplateState createState() => _CardTemplateState();
@@ -44,11 +48,15 @@ class _CardTemplateState extends State<CardTemplate> {
                   onPressed: (){
                     if(widget.displayDelete != null){
                       Navigator.push(context, MaterialPageRoute(builder: (context) => DisplayForm(
-                        delete: widget.displayDelete,
+                        display: widget.display,
+                        delete:() =>  widget.displayDelete(widget.display),
+                        update: () =>  widget.displayUpdate(widget.display),
                       )));
                     }else{
                       Navigator.push(context, MaterialPageRoute(builder: (context) => ControleForm(
-                        delete: widget.controleDelete,
+                        controle: widget.controle,
+                        delete:() => widget.controleDelete(widget.controle),
+                        update:() => widget.controleUpdate(widget.controle),
                       )));
                     }
                   }

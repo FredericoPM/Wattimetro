@@ -34,6 +34,11 @@ class _DisplaysScreenState extends State<DisplaysScreen> {
                   displayList.delete(display);
                 });
               },
+              update: (display) {
+                setState(() {
+                  displayList.update(display);
+                });
+              },
             ),
           ],
         );
@@ -47,6 +52,11 @@ class _DisplaysScreenState extends State<DisplaysScreen> {
               delete: (display) {
                 setState(() {
                   displayList.delete(display);
+                });
+              },
+              update: (display) {
+                setState(() {
+                  displayList.update(display);
                 });
               },
             ),
@@ -92,7 +102,7 @@ class _DisplaysScreenState extends State<DisplaysScreen> {
       body: Center(
         child: Padding(
           padding: const EdgeInsets.symmetric(horizontal: 20,vertical: 28),
-          child: available ? Column(
+          child: available ? ListView(
             children: [
               SearchInput(),
               for(var display in displayList.displays)

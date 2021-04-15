@@ -32,6 +32,11 @@ class _ControleScreenState extends State<ControleScreen> {
                   controleList.delete(controle);
                 });
               },
+              update:(controle) {
+                setState(() {
+                  controleList.update(controle);
+                });
+              },
             ),
           ],
         );
@@ -47,6 +52,11 @@ class _ControleScreenState extends State<ControleScreen> {
                   controleList.delete(controle);
                 });
               },
+              update:(controle) {
+                setState(() {
+                  controleList.update(controle);
+                });
+              },
             ),
           ],
         );
@@ -60,6 +70,11 @@ class _ControleScreenState extends State<ControleScreen> {
               delete:(controle) {
                 setState(() {
                   controleList.delete(controle);
+                });
+              },
+              update:(controle) {
+                setState(() {
+                  controleList.update(controle);
                 });
               },
             ),

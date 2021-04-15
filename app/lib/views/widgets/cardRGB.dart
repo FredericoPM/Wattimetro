@@ -7,7 +7,8 @@ import 'colorPicker.dart';
 class CardRGB extends StatefulWidget {
   Controle controle;
   void Function(Controle controle) delete;
-  CardRGB({this.controle, this.delete});
+  void Function(Controle controle) update;
+  CardRGB({this.controle, this.delete, this.update});
   @override
   _CardRGBState createState() => _CardRGBState();
 }
@@ -19,6 +20,7 @@ class _CardRGBState extends State<CardRGB> {
     return CardTemplate(
       controle: widget.controle,
       controleDelete: widget.delete,
+      controleUpdate: widget.update,
       childWidget: Center(
         child: CircleColorPicker(
           initialColor: Colors.blue,

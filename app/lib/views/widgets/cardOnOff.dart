@@ -6,7 +6,8 @@ import 'package:flutter/material.dart';
 class CardOnOff extends StatefulWidget {
   Controle controle;
   void Function(Controle controle) delete;
-  CardOnOff({this.controle, this.delete});
+  void Function(Controle controle) update;
+  CardOnOff({this.controle, this.delete, this.update});
   @override
   _CardOnOffState createState() => _CardOnOffState();
 }
@@ -18,6 +19,7 @@ class _CardOnOffState extends State<CardOnOff> {
     return CardTemplate(
       controle: widget.controle,
       controleDelete: widget.delete,
+      controleUpdate: widget.update,
       childWidget:RawMaterialButton(
         onPressed: () {},
         elevation: 2.0,

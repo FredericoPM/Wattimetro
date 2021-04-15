@@ -13,6 +13,12 @@ class _DropDownDataImputState extends State<DropDownDataImput> {
   String _formvalue;
   bool _focus = false;
   @override
+  void initState() { 
+    super.initState();
+    if(widget.controller.text != ""){
+      _formvalue = widget.controller.text;
+    }
+  }
   Widget build(BuildContext context) {
     return FocusScope(
       onFocusChange: (focus)  {

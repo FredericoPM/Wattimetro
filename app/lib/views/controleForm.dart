@@ -5,8 +5,10 @@ import 'package:flutter/material.dart';
 
 class ControleForm extends StatefulWidget {
   void Function(Controle controle) add;
-  void Function(Controle controle) delete;
-  ControleForm({this.add, this.delete});
+  void Function() delete;
+  void Function() update;
+  Controle controle;
+  ControleForm({this.add, this.delete, this.controle,this.update});
   @override
   _ControleFormState createState() => _ControleFormState();
 }
@@ -24,6 +26,15 @@ class _ControleFormState extends State<ControleForm> {
   }
 
   @override
+  void initState() { 
+    super.initState();
+    if(widget.controle != null){
+      _nomeController.text = widget.controle.name;
+      _tipoController.text = widget.controle.type;
+      _brokerController.text = widget.controle.broker;
+      _topicoController.text = widget.controle.topic;
+    }
+  }
   Widget build(BuildContext context) {
     return Scaffold(
       appBar:AppBar(
@@ -39,6 +50,16 @@ class _ControleFormState extends State<ControleForm> {
               fontSize: 28
             ),
         ),
+        actions: widget.delete != null ? [
+          IconButton(
+            icon: Icon(Icons.delete, color: Theme.of(context).errorColor,size: 30,),
+            onPressed: (){
+              widget.delete();
+              goBack(context);
+            }
+          )
+        ] 
+        : null,
       ),
       body: Center(
         child: Padding(
@@ -112,14 +133,18 @@ class _ControleFormState extends State<ControleForm> {
                     color: Color(0xFF6ACB67),
                     onPressed: (){
                        if (_formKey.currentState.validate()) {
-                         widget.add(
-                           Controle(
-                             name: _nomeController.text,
-                             type: _tipoController.text,
-                             broker: _brokerController.text,
-                             topic: _topicoController.text
-                           )
-                         );
+                         if(widget.update == null){
+                          widget.add(
+                            Controle(
+                              name: _nomeController.text,
+                              type: _tipoController.text,
+                              broker: _brokerController.text,
+                              topic: _topicoController.text
+                            )
+                          );
+                         }else{
+                           widget.update();
+                         }
                          Navigator.pop(context);
                        }
                     },

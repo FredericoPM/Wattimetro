@@ -7,7 +7,8 @@ import 'package:flutter/material.dart';
 class CardDigitalDisplay extends StatefulWidget {
   Display display;
   void Function(Display display) delete;
-  CardDigitalDisplay({this.display, this.delete});
+  void Function(Display controle) update;
+  CardDigitalDisplay({this.display, this.delete, this.update});
   @override
   _CardDigitalDisplayState createState() => _CardDigitalDisplayState();
 }
@@ -19,6 +20,7 @@ class _CardDigitalDisplayState extends State<CardDigitalDisplay> {
     return CardTemplate(
       display: widget.display,
       displayDelete: widget.delete,
+      displayUpdate: widget.update,
       childWidget:Container(
         height: 100,
         decoration:BoxDecoration(

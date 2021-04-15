@@ -8,7 +8,8 @@ import 'package:flutter/material.dart';
 class CardBarChart extends StatefulWidget {
   Display display;
   void Function(Display display) delete;
-  CardBarChart({this.display, this.delete});
+  void Function(Display controle) update;
+  CardBarChart({this.display, this.delete, this.update});
   @override
   _CardBarChartState createState() => _CardBarChartState();
 }
@@ -37,6 +38,7 @@ class _CardBarChartState extends State<CardBarChart> {
       child: CardTemplate(
         display: widget.display,
         displayDelete: widget.delete,
+        displayUpdate: widget.update,
         childWidget: Row(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [

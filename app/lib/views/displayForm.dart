@@ -1,13 +1,16 @@
 import 'package:app/models/display.dart';
 import 'package:app/views/widgets/dataInput.dart';
+import 'package:auto_size_text/auto_size_text.dart';
 import 'package:flutter/material.dart';
 
 import 'widgets/dropDownDataImput.dart';
 
 class DisplayForm extends StatefulWidget {
   void Function(Display display) add;
-  void Function(Display display) delete;
-  DisplayForm({this.add, this.delete});
+  void Function() delete;
+  void Function() update;
+  Display display;
+  DisplayForm({this.add, this.delete, this.display, this.update});
   @override
   _DisplayFormState createState() => _DisplayFormState();
 }
@@ -23,6 +26,16 @@ class _DisplayFormState extends State<DisplayForm> {
     Navigator.pop(context);
   }
   @override
+  void initState() {
+    super.initState();
+    if(widget.display != null){
+      _nomeController.text = widget.display.name;
+      _tipoController.text = widget.display.type;
+      _brokerController.text = widget.display.broker;
+      _topicoController.text = widget.display.topic;
+      _medidaController.text = widget.display.measurement;
+    }
+  }
   Widget build(BuildContext context) {
     return Scaffold(
       appBar:AppBar(
@@ -31,13 +44,24 @@ class _DisplayFormState extends State<DisplayForm> {
           icon: Icon(Icons.keyboard_backspace, size: 30),
           onPressed: () => goBack(context),
         ),
-        title: Text(
-            "Novo Display", 
-            style: TextStyle(
-              fontWeight: FontWeight.w300,
-              fontSize: 28
-            ),
+        title: AutoSizeText(
+          "Novo Display", 
+          maxLines: 1,
+          style: TextStyle(
+            fontWeight: FontWeight.w300,
+            fontSize: 28
+          ),
         ),
+        actions: widget.delete != null ? [
+          IconButton(
+            icon: Icon(Icons.delete, color: Theme.of(context).errorColor,size: 30,),
+            onPressed: (){
+              widget.delete();
+              goBack(context);
+            }
+          )
+        ] 
+        : null,
       ),
       body: Center(
         child: Padding(
@@ -117,15 +141,19 @@ class _DisplayFormState extends State<DisplayForm> {
                     color: Color(0xFF6ACB67),
                     onPressed: (){
                       if (_formKey.currentState.validate()) {
-                         widget.add(
-                           Display(
-                             name: _nomeController.text,
-                             type: _tipoController.text,
-                             broker: _brokerController.text,
-                             topic: _topicoController.text,
-                             measurement: _medidaController.text
-                           )
-                         );
+                         if(widget.update == null){
+                           widget.add(
+                            Display(
+                              name: _nomeController.text,
+                              type: _tipoController.text,
+                              broker: _brokerController.text,
+                              topic: _topicoController.text,
+                              measurement: _medidaController.text
+                            )
+                          );
+                         }else{
+                           widget.update();
+                         }
                          Navigator.pop(context);
                        }
                     },

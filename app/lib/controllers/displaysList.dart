@@ -7,6 +7,9 @@ class DisplayList{
     _displays.add(display);
   }
   void delete(Display display){
-    
+    print("delete");
+  }
+  void update(Display display){
+    print("update");
   }
 }
