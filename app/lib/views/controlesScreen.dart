@@ -16,9 +16,9 @@ class ControleScreen extends StatefulWidget {
 }
 
 class _ControleScreenState extends State<ControleScreen> {
+  //TODO: transformar o controleList em um provider
   ControleList controleList = ControleList();
   bool available;
-
   selectCard(Controle controle){
     switch(controle.type){
       case "RGB":
@@ -27,6 +27,11 @@ class _ControleScreenState extends State<ControleScreen> {
             SizedBox(height: 20),
             CardRGB(
               controle: controle,
+              delete:(controle) {
+                setState(() {
+                  controleList.delete(controle);
+                });
+              },
             ),
           ],
         );
@@ -37,6 +42,11 @@ class _ControleScreenState extends State<ControleScreen> {
             SizedBox(height: 20),
             CardOnOff(
               controle: controle,
+              delete:(controle) {
+                setState(() {
+                  controleList.delete(controle);
+                });
+              },
             ),
           ],
         );
@@ -47,6 +57,11 @@ class _ControleScreenState extends State<ControleScreen> {
             SizedBox(height: 20),
             CardSlider(
               controle: controle,
+              delete:(controle) {
+                setState(() {
+                  controleList.delete(controle);
+                });
+              },
             ),
           ],
         );

@@ -5,7 +5,8 @@ import 'package:flutter/material.dart';
 
 class ControleForm extends StatefulWidget {
   void Function(Controle controle) add;
-  ControleForm({this.add});
+  void Function(Controle controle) delete;
+  ControleForm({this.add, this.delete});
   @override
   _ControleFormState createState() => _ControleFormState();
 }
@@ -32,7 +33,7 @@ class _ControleFormState extends State<ControleForm> {
           onPressed: () => goBack(context),
         ),
         title: Text(
-            "Novo Controle", 
+            widget.delete == null ? "Novo Controle" : "Editar Controle", 
             style: TextStyle(
               fontWeight: FontWeight.w300,
               fontSize: 28

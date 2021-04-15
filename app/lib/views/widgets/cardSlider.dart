@@ -5,7 +5,8 @@ import 'package:flutter/material.dart';
 
 class CardSlider extends StatefulWidget {
   Controle controle;
-  CardSlider({this.controle});
+  void Function(Controle controle) delete;
+  CardSlider({this.controle, this.delete});
   @override
   _CardSliderState createState() => _CardSliderState();
 }
@@ -16,6 +17,7 @@ class _CardSliderState extends State<CardSlider> {
   Widget build(BuildContext context) {
     return CardTemplate(
       controle: widget.controle,
+      controleDelete: widget.delete,
       childWidget: Row(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [

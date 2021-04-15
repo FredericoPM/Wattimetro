@@ -6,7 +6,8 @@ import 'widgets/dropDownDataImput.dart';
 
 class DisplayForm extends StatefulWidget {
   void Function(Display display) add;
-  DisplayForm({this.add});
+  void Function(Display display) delete;
+  DisplayForm({this.add, this.delete});
   @override
   _DisplayFormState createState() => _DisplayFormState();
 }

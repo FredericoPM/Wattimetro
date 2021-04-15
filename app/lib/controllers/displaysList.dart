@@ -6,4 +6,7 @@ class DisplayList{
   void add(Display display){
     _displays.add(display);
   }
+  void delete(Display display){
+    
+  }
 }

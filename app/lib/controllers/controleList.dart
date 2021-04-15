@@ -6,4 +6,6 @@ class ControleList{
   void add(Controle controle){
     _controles.add(controle);
   }
+  void delete(Controle controle){
+  }
 }

@@ -18,6 +18,7 @@ class DisplaysScreen extends StatefulWidget {
 }
 
 class _DisplaysScreenState extends State<DisplaysScreen> {
+  //TODO: transformar o displayList em um provider
   DisplayList displayList = DisplayList();
   bool available;
   selectCard(Display display){
@@ -28,6 +29,11 @@ class _DisplaysScreenState extends State<DisplaysScreen> {
             SizedBox(height: 20),
             CardBarChart(
               display: display,
+              delete: (display) {
+                setState(() {
+                  displayList.delete(display);
+                });
+              },
             ),
           ],
         );
@@ -38,6 +44,11 @@ class _DisplaysScreenState extends State<DisplaysScreen> {
             SizedBox(height: 20),
             CardDigitalDisplay(
               display: display,
+              delete: (display) {
+                setState(() {
+                  displayList.delete(display);
+                });
+              },
             ),
           ],
         );

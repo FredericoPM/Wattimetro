@@ -3,11 +3,22 @@ import 'package:app/models/display.dart';
 import 'package:auto_size_text/auto_size_text.dart';
 import 'package:flutter/material.dart';
 
+import '../controleForm.dart';
+import '../displayForm.dart';
+
 class CardTemplate extends StatefulWidget {
   var childWidget;
-  Controle controle;
   Display display;
-  CardTemplate({this.childWidget, this.controle, this.display});
+  void Function(Display display) displayDelete;
+  Controle controle;
+  void Function(Controle controle) controleDelete;
+  CardTemplate({
+    this.childWidget,
+    this.controle,
+    this.display,
+    this.controleDelete,
+    this.displayDelete
+  });
   @override
   _CardTemplateState createState() => _CardTemplateState();
 }
@@ -30,7 +41,17 @@ class _CardTemplateState extends State<CardTemplate> {
               children: [
                 IconButton(
                   icon: Icon(Icons.create, color: Theme.of(context).accentColor, size: 28,),
-                  onPressed: (){}
+                  onPressed: (){
+                    if(widget.displayDelete != null){
+                      Navigator.push(context, MaterialPageRoute(builder: (context) => DisplayForm(
+                        delete: widget.displayDelete,
+                      )));
+                    }else{
+                      Navigator.push(context, MaterialPageRoute(builder: (context) => ControleForm(
+                        delete: widget.controleDelete,
+                      )));
+                    }
+                  }
                 ),
                 Container(
                   alignment: Alignment.center,
