@@ -58,7 +58,7 @@ class _SearchInputState extends State<SearchInput> {
                 borderRadius: BorderRadius.circular(10),
                 borderSide: BorderSide(
                   width: 1,
-                  color: Theme.of(context).accentColor,
+                  color: Color(0xFFFCF8EF),
                 ),
               ),
           ),

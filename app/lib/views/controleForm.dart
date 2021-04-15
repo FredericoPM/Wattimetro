@@ -1,4 +1,5 @@
 import 'package:app/views/widgets/dataInput.dart';
+import 'package:app/views/widgets/dropDownDataImput.dart';
 import 'package:flutter/material.dart';
 
 class ControleForm extends StatefulWidget {
@@ -23,14 +24,6 @@ class _ControleFormState extends State<ControleForm> {
               fontSize: 28
             ),
         ),
-        actions: [
-          IconButton(
-            icon: Icon(Icons.add, size: 30),
-            onPressed: (){
-
-            }
-          )
-        ],
       ),
       body: Center(
         child: Padding(
@@ -44,6 +37,23 @@ class _ControleFormState extends State<ControleForm> {
                     SizedBox(height:8),
                     DataImput(
                       labelText: "Nome",
+                    ),
+                    SizedBox(height:20),
+                    DropDownDataImput(
+                      labelText: "Tipo do Controle",
+                      options: [
+                        "On/Off",
+                        "Slider",
+                        "RGB"
+                      ],
+                    ),
+                    SizedBox(height:20),
+                    DataImput(
+                      labelText: "Broker",
+                    ),
+                    SizedBox(height:20),
+                    DataImput(
+                      labelText: "Topico",
                     ),
                   ],
                 ),

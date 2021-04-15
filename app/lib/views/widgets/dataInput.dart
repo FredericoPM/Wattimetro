@@ -20,9 +20,9 @@ class _DataImputState extends State<DataImput> {
             // }
           },
           child:TextFormField(
-            style: TextStyle(color: Color(0xFFFCF8EF)),
+            style: TextStyle(color: Color(0xFFFCF8EF), fontSize: 16),
             decoration: InputDecoration(
-              contentPadding: EdgeInsets.symmetric(vertical:18, horizontal: 16),
+              contentPadding: EdgeInsets.symmetric(vertical:15, horizontal: 16),
               labelText: widget.labelText,
               labelStyle: TextStyle(
                 color: Color(0xFFFCF8EF),
@@ -53,7 +53,7 @@ class _DataImputState extends State<DataImput> {
                 borderRadius: BorderRadius.circular(15),
                 borderSide: BorderSide(
                   width: 1,
-                  color: Theme.of(context).accentColor,
+                  color: Color(0xFFFCF8EF),
                 ),
               ),
           ),

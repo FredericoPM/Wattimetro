@@ -1,6 +1,8 @@
 import 'package:app/views/widgets/dataInput.dart';
 import 'package:flutter/material.dart';
 
+import 'widgets/dropDownDataImput.dart';
+
 class DisplayForm extends StatefulWidget {
   @override
   _DisplayFormState createState() => _DisplayFormState();
@@ -23,14 +25,6 @@ class _DisplayFormState extends State<DisplayForm> {
               fontSize: 28
             ),
         ),
-        actions: [
-          IconButton(
-            icon: Icon(Icons.add, size: 30),
-            onPressed: (){
-
-            }
-          )
-        ],
       ),
       body: Center(
         child: Padding(
@@ -45,6 +39,27 @@ class _DisplayFormState extends State<DisplayForm> {
                     DataImput(
                       labelText: "Nome",
                     ),
+                    SizedBox(height:20),
+                    DropDownDataImput(
+                      labelText: "Tipo do Display",
+                      options: [
+                        "Digital",
+                        "Grafico",
+                      ],
+                    ),
+                    SizedBox(height:20),
+                    DataImput(
+                      labelText: "Broker",
+                    ),
+                    SizedBox(height:20),
+                    DataImput(
+                      labelText: "Topico",
+                    ),
+                    SizedBox(height:20),
+                    DataImput(
+                      labelText: "Unidade de medida",
+                    ),
+                    SizedBox(height:20),
                   ],
                 ),
               ),
