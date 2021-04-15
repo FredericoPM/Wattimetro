@@ -16,6 +16,8 @@ class ControleScreen extends StatefulWidget {
 }
 
 class _ControleScreenState extends State<ControleScreen> {
+  //! Ao inserir dados a lista não esta sendo atualizada
+  //! Ao pesquisar algo inexistente some a barra de pesquisa 
   TextEditingController _searchController = TextEditingController();
   //TODO: transformar o controleList em um provider
   ControleList controleList = ControleList();

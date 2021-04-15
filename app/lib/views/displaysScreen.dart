@@ -17,6 +17,8 @@ class DisplaysScreen extends StatefulWidget {
 }
 
 class _DisplaysScreenState extends State<DisplaysScreen> {
+  //! Ao inserir dados a lista não esta sendo atualizada
+  //! Ao pesquisar algo inexistente some a barra de pesquisa
   TextEditingController _searchController = TextEditingController();
   //TODO: transformar o displayList em um provider
   DisplayList displayList = DisplayList();
