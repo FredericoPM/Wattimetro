@@ -1,15 +1,31 @@
 import 'package:app/models/display.dart';
+import 'package:app/models/repositorie/displaySQLite.dart';
 
 class DisplayList{
+  DisplaySQLite dataBase = DisplaySQLite();
   List<Display> _displays = [];
   List<Display> get displays => _displays;
-  void add(Display display){
-    _displays.add(display);
+  Future<void> getAll() async{
+    if(dataBase.db == null)
+      await dataBase.DBconstructor();
+    _displays = await dataBase.getAll();
   }
-  void delete(Display display){
+  void add(Display display) async{
+    if(dataBase.db == null)
+      await dataBase.DBconstructor();
+    await dataBase.insert(display);
+    await getAll();
+  }
+  //! Ainda não implementado
+  void delete(Display display) async{
+    if(dataBase.db == null)
+      await dataBase.DBconstructor();
     print("delete");
   }
-  void update(Display display){
+  //! Ainda não implementado
+  void update(Display display) async{
+    if(dataBase.db == null)
+      await dataBase.DBconstructor();
     print("update");
   }
   List<Display> searchByName(String name){

@@ -73,12 +73,10 @@ class Display {
     _id = json['id'];
     _name = json['name'];
     _type = json['type'];
-    _favorite = json['favorite'];
+    _favorite = json['favorite'] == 1;
     _broker = json['broker'];
     _topic = json['topic'];
     _measurement = json['measurement'];
-    _numericalValue = json['numericalValue'];
-    _numericalValueList = json['numericalValueList'].cast<double>();
   }
 
   Map<String, dynamic> toJson() {
@@ -86,12 +84,10 @@ class Display {
     data['id'] = this._id;
     data['name'] = this._name;
     data['type'] = this._type;
-    data['favorite'] = this._favorite;
+    data['favorite'] = this._favorite ? 1 : 0;
     data['broker'] = this._broker;
     data['topic'] = this._topic;
     data['measurement'] = this._measurement;
-    data['numericalValue'] = this._numericalValue;
-    data['numericalValueList'] = this._numericalValueList;
     return data;
   }
 }

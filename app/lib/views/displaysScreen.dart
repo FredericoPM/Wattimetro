@@ -32,14 +32,12 @@ class _DisplaysScreenState extends State<DisplaysScreen> {
             CardBarChart(
               display: display,
               delete: (display) {
-                setState(() {
-                  displayList.delete(display);
-                });
+                displayList.delete(display);
+                displayList.getAll().then((_) => setState(() {displays = displayList.displays;}));
               },
               update: (display) {
-                setState(() {
-                  displayList.update(display);
-                });
+                displayList.update(display);
+                displayList.getAll().then((_) => setState(() {displays = displayList.displays;}));
               },
             ),
           ],
@@ -52,14 +50,12 @@ class _DisplaysScreenState extends State<DisplaysScreen> {
             CardDigitalDisplay(
               display: display,
               delete: (display) {
-                setState(() {
-                  displayList.delete(display);
-                });
+                displayList.delete(display);
+                displayList.getAll().then((_) => setState(() {displays = displayList.displays;}));
               },
               update: (display) {
-                setState(() {
-                  displayList.update(display);
-                });
+                displayList.update(display);
+                displayList.getAll().then((_) => setState(() {displays = displayList.displays;}));
               },
             ),
           ],
@@ -70,7 +66,7 @@ class _DisplaysScreenState extends State<DisplaysScreen> {
   @override
   void initState() { 
     super.initState();
-    displays = displayList.displays;
+    displayList.getAll().then((_) => setState(() {displays = displayList.displays;}));
   }
   Widget build(BuildContext context) {
     return Scaffold(
@@ -97,6 +93,7 @@ class _DisplaysScreenState extends State<DisplaysScreen> {
               add: (display){
                 setState(() {
                   displayList.add(display);
+                  displayList.getAll().then((_) => setState(() {displays = displayList.displays;}));
                 });
               }
             ))),

@@ -31,14 +31,12 @@ class _ControleScreenState extends State<ControleScreen> {
             CardRGB(
               controle: controle,
               delete:(controle) {
-                setState(() {
-                  controleList.delete(controle);
-                });
+                controleList.delete(controle);
+                controleList.getAll().then((_) => setState(() {controles = controleList.controles;}));
               },
               update:(controle) {
-                setState(() {
-                  controleList.update(controle);
-                });
+                controleList.update(controle);
+                controleList.getAll().then((_) => setState(() {controles = controleList.controles;}));
               },
             ),
           ],
@@ -51,14 +49,12 @@ class _ControleScreenState extends State<ControleScreen> {
             CardOnOff(
               controle: controle,
               delete:(controle) {
-                setState(() {
-                  controleList.delete(controle);
-                });
+                controleList.delete(controle);
+                controleList.getAll().then((_) => setState(() {controles = controleList.controles;}));
               },
               update:(controle) {
-                setState(() {
-                  controleList.update(controle);
-                });
+                controleList.update(controle);
+                controleList.getAll().then((_) => setState(() {controles = controleList.controles;}));
               },
             ),
           ],
@@ -71,14 +67,12 @@ class _ControleScreenState extends State<ControleScreen> {
             CardSlider(
               controle: controle,
               delete:(controle) {
-                setState(() {
-                  controleList.delete(controle);
-                });
+                controleList.delete(controle);
+                controleList.getAll().then((_) => setState(() {controles = controleList.controles;}));
               },
               update:(controle) {
-                setState(() {
-                  controleList.update(controle);
-                });
+                controleList.update(controle);
+                controleList.getAll().then((_) => setState(() {controles = controleList.controles;}));
               },
             ),
           ],
@@ -90,7 +84,7 @@ class _ControleScreenState extends State<ControleScreen> {
   @override
   void initState() { 
     super.initState();
-    controles = controleList.controles;
+    controleList.getAll().then((_) => setState(() {controles = controleList.controles;}));
   }
   Widget build(BuildContext context) {
     return Scaffold(
@@ -116,9 +110,8 @@ class _ControleScreenState extends State<ControleScreen> {
             onPressed: (){
               Navigator.push(context, MaterialPageRoute(builder: (context) => ControleForm(
                 add: (controle){
-                  setState(() {
-                    controleList.add(controle);
-                  });
+                  controleList.add(controle);
+                  controleList.getAll().then((_) => setState(() {controles = controleList.controles;}));
                 },
               )));
             }

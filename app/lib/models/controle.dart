@@ -46,7 +46,6 @@ class Controle {
   }
 
   int get id => _id;
-  set id(int id) => _id = id;
   String get name => _name;
   set name(String name) => _name = name;
   String get type => _type;
@@ -68,25 +67,20 @@ class Controle {
     _id = json['id'];
     _name = json['name'];
     _type = json['type'];
-    _favorite = json['favorite'];
+    _favorite = json['favorite'] == 1;
     _broker = json['broker'];
     _topic = json['topic'];
-    _rgbValue = json['rgbValue'];
-    _onState = json['onState'];
-    _sliderState = json['sliderState'];
   }
 
   Map<String, dynamic> toJson() {
     final Map<String, dynamic> data = new Map<String, dynamic>();
-    data['id'] = this._id;
+    if(this._id != null)
+      data['id'] = this._id;
     data['name'] = this._name;
     data['type'] = this._type;
-    data['favorite'] = this._favorite;
+    data['favorite'] = this._favorite ? 1 : 0;
     data['broker'] = this._broker;
     data['topic'] = this._topic;
-    data['rgbValue'] = this._rgbValue;
-    data['onState'] = this._onState;
-    data['sliderState'] = this._sliderState;
     return data;
   }
 }

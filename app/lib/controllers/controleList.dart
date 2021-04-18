@@ -1,15 +1,31 @@
 import 'package:app/models/controle.dart';
+import 'package:app/models/repositorie/controleSQLite.dart';
 
 class ControleList{
+  ControleSQLite dataBase = ControleSQLite();
   List<Controle> _controles = [];
   List<Controle> get controles => _controles;
-  void add(Controle controle){
-    _controles.add(controle);
+  Future<void> getAll() async{
+    if(dataBase.db == null)
+      await dataBase.DBconstructor();
+    _controles = await dataBase.getAll();
   }
-  void delete(Controle controle){
+  void add(Controle controle) async{
+    if(dataBase.db == null)
+      await dataBase.DBconstructor();
+    await dataBase.insert(controle);
+    await getAll();
+  }
+  //! Ainda não implementado
+  void delete(Controle controle) async{
+    if(dataBase.db == null)
+      await dataBase.DBconstructor();
     print("delete");
   }
-  void update(Controle controle){
+  //! Ainda não implementado
+  void update(Controle controle) async{
+    if(dataBase.db == null)
+      await dataBase.DBconstructor();
     print("update");
   }
   List<Controle> searchByName(String name){
