@@ -14,7 +14,6 @@ class ControleForm extends StatefulWidget {
 }
 
 class _ControleFormState extends State<ControleForm> {
-  //! ao tentar submeter o formulario vazio ocorre um problema visual com campos
   final _formKey = GlobalKey<FormState>();
   TextEditingController _nomeController = TextEditingController();
   TextEditingController _tipoController = TextEditingController();

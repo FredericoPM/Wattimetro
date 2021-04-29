@@ -56,6 +56,13 @@ class _DropDownDataInputState extends State<DropDownDataInput> {
           errorStyle: TextStyle(
             color: Theme.of(context).errorColor,
           ),
+          errorBorder: OutlineInputBorder(
+            borderRadius: BorderRadius.circular(15),
+            borderSide: BorderSide(
+              width: 1,
+              color: Theme.of(context).errorColor,
+            ),
+          ),
           filled: true,
           fillColor: Color(0xFF585471),
           enabledBorder: OutlineInputBorder(
