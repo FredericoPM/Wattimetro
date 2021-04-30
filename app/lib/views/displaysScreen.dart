@@ -17,8 +17,6 @@ class DisplaysScreen extends StatefulWidget {
 }
 
 class _DisplaysScreenState extends State<DisplaysScreen> {
-  //! Ao inserir dados a lista não esta sendo atualizada
-  //! Ao pesquisar algo inexistente some a barra de pesquisa
   TextEditingController _searchController = TextEditingController();
   //TODO: transformar o displayList em um provider
   DisplayList displayList = DisplayList();
@@ -28,7 +26,6 @@ class _DisplaysScreenState extends State<DisplaysScreen> {
       case "Grafico":
         return Column(
           children: [
-            SizedBox(height: 20),
             CardBarChart(
               display: display,
               delete: (display) {
@@ -40,13 +37,13 @@ class _DisplaysScreenState extends State<DisplaysScreen> {
                 displayList.getAll().then((_) => setState(() {displays = displayList.displays;}));
               },
             ),
+            SizedBox(height: 20),
           ],
         );
       break;
       case "Digital":
         return Column(
           children: [
-            SizedBox(height: 20),
             CardDigitalDisplay(
               display: display,
               delete: (display) {
@@ -58,6 +55,7 @@ class _DisplaysScreenState extends State<DisplaysScreen> {
                 displayList.getAll().then((_) => setState(() {displays = displayList.displays;}));
               },
             ),
+            SizedBox(height: 20),
           ],
         );
       break;
@@ -103,43 +101,58 @@ class _DisplaysScreenState extends State<DisplaysScreen> {
       body: Center(
         child: Padding(
           padding: const EdgeInsets.symmetric(horizontal: 20,vertical: 28),
-          child: displays.length > 0 ? ListView(
+          child: Column(
             children: [
               SearchInput(
                 controller: _searchController,
                 onChange: (text) =>{
                   setState(() {
                     displays = displayList.searchByName(text);
+                    print(displays);
                   })
                 },
               ),
-              for(var display in displayList.displays)
-                selectCard(display),
-            ],
-          )
-          : Opacity(
-              opacity: 0.9,
-              child: Column(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children:[
-                Container(
-                  height: (MediaQuery.of(context).size.height-AppBar().preferredSize.height-56) * 0.4,
-                  child: SvgPicture.asset(
-                    "assets/images/displays_empty_image.svg",
+              SizedBox(height: 20),
+              displays.length > 0 
+              ? Container(
+                height: MediaQuery.of(context).size.height - 204,
+                child: ListView.builder(
+                  itemCount: displays.length,
+                  itemBuilder: (ctx, index){
+                    return selectCard(displays[index]);
+                  }
+                ),
+              )
+              : Container(
+                height: MediaQuery.of(context).size.height - 204,
+                child: Center(
+                  child: Opacity(
+                      opacity: 0.9,
+                      child: Column(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children:[
+                        Container(
+                          height: (MediaQuery.of(context).size.height-AppBar().preferredSize.height-56) * 0.4,
+                          child: SvgPicture.asset(
+                            "assets/images/displays_empty_image.svg",
+                          ),
+                        ),
+                        SizedBox(height: 30),
+                        Text(
+                          "Nenhum display encontrado",
+                          textAlign: TextAlign.center,
+                          style: TextStyle(
+                            fontSize: 21,
+                            fontWeight: FontWeight.w300,
+                          ),
+                        )
+                      ]
+                    ),
                   ),
                 ),
-                SizedBox(height: 30),
-                Text(
-                  "Parece que você não tem nenhum display",
-                  textAlign: TextAlign.center,
-                  style: TextStyle(
-                    fontSize: 21,
-                    fontWeight: FontWeight.w300,
-                  ),
-                )
-              ]
-            ),
-          ),
+              ),
+            ],
+          )
         ),
       ),
     );

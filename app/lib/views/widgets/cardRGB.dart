@@ -19,14 +19,14 @@ class _CardRGBState extends State<CardRGB> {
   @override
   //! scroll do color picker conflitando com scroll do list view
   Widget build(BuildContext context) {
-    conection = ConnectionController(
-      broker: widget.controle.broker,
-      topic: widget.controle.topic,
-      onMensage: (String text){
-        print(text);
-      }
-    );
-    conection.startConnection();
+    // conection = ConnectionController(
+    //   broker: widget.controle.broker,
+    //   topic: widget.controle.topic,
+    //   onMensage: (String text){
+    //     print(text);
+    //   }
+    // );
+    // conection.startConnection();
     return CardTemplate(
       controle: widget.controle,
       controleDelete: widget.delete,

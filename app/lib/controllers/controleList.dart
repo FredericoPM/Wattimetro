@@ -28,7 +28,7 @@ class ControleList{
       await dataBase.DBconstructor();
     print("update");
   }
-  List<Controle> searchByName(String name){
-    return _controles.where((controle) => controle.name.substring(0, name.length) == name).toList();
+  List<Controle> searchByName(String text){
+    return _controles.where((item) => item.name.substring(0, text.length) == text).toList();
   }
 }
