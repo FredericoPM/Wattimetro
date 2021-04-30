@@ -1,3 +1,4 @@
+import 'package:app/controllers/conection.dart';
 import 'package:app/models/display.dart';
 import 'package:app/views/widgets/cardTemplate.dart';
 import 'package:auto_size_text/auto_size_text.dart';
@@ -14,8 +15,25 @@ class CardDigitalDisplay extends StatefulWidget {
 }
 
 class _CardDigitalDisplayState extends State<CardDigitalDisplay> {
-  double _sliderState = 0;
+  String _displayValue = "0.0";
+  ConnectionController conection;
   @override
+  void initState() {
+    conection = ConnectionController(
+      broker: widget.display.broker,
+      topic: widget.display.topic,
+      onMensage: (String text){
+        print(text);
+        String displayId = "D${widget.display.id}";
+        if(text.substring(0, displayId.length) == displayId){
+          setState(() {
+            _displayValue = text.substring(displayId.length+1);
+          });
+        }
+      }
+    );
+    conection.startConnection();
+  }
   Widget build(BuildContext context) {
     return CardTemplate(
       display: widget.display,
@@ -38,7 +56,7 @@ class _CardDigitalDisplayState extends State<CardDigitalDisplay> {
                 alignment: Alignment.centerRight,
                 children: [
                   AutoSizeText(
-                    "88.8",
+                    _displayValue.replaceAll(RegExp('[012345679]'), '8'),
                     maxLines: 1,
                     style: TextStyle(
                       color: Theme.of(context).canvasColor,
@@ -47,7 +65,7 @@ class _CardDigitalDisplayState extends State<CardDigitalDisplay> {
                     ),
                   ),
                   AutoSizeText(
-                    "18.5",
+                    _displayValue,
                     maxLines: 1,
                     style: TextStyle(
                       color: Theme.of(context).accentColor,
@@ -58,7 +76,7 @@ class _CardDigitalDisplayState extends State<CardDigitalDisplay> {
                 ],
               ),
               Text(
-                "°C",
+                widget.display.measurement,
                 style: TextStyle(
                   color: Theme.of(context).accentColor,
                   fontSize: 30,

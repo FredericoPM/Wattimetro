@@ -1,3 +1,4 @@
+import 'package:app/controllers/conection.dart';
 import 'package:app/models/controle.dart';
 import 'package:app/views/widgets/cardTemplate.dart';
 import 'package:flutter/material.dart';
@@ -13,9 +14,26 @@ class CardOnOff extends StatefulWidget {
 }
 
 class _CardOnOffState extends State<CardOnOff> {
-  double _sliderState = 0;
+  bool _state = false;
+  ConnectionController conection;
   @override
+  void initState() {
+    conection = ConnectionController(
+      broker: widget.controle.broker,
+      topic: widget.controle.topic,
+      onMensage: (String text){
+        String controleId = "C${widget.controle.id}";
+        if(text.substring(0, controleId.length) == controleId){
+          setState(() {
+            _state = text.substring(controleId.length+1) == '1';
+          });
+        }
+      }
+    );
+    conection.startConnection();
+  }
   Widget build(BuildContext context) {
+    print(widget.controle.id);
     return CardTemplate(
       controle: widget.controle,
       controleDelete: widget.delete,
@@ -25,7 +43,7 @@ class _CardOnOffState extends State<CardOnOff> {
         elevation: 2.0,
         fillColor: Theme.of(context).accentColor,
         child: Icon(
-          Icons.lightbulb_outline,
+          _state ? Icons.lightbulb : Icons.lightbulb_outline,
           size: 35.0,
           color: Theme.of(context).cardColor,
         ),

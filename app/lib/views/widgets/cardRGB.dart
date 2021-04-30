@@ -15,18 +15,27 @@ class CardRGB extends StatefulWidget {
 }
 
 class _CardRGBState extends State<CardRGB> {
+  bool _state = false;
   ConnectionController conection;
   @override
+  void initState() {
+    conection = ConnectionController(
+      broker: widget.controle.broker,
+      topic: widget.controle.topic,
+      onMensage: (String text){
+        String controleId = "C${widget.controle.id}";
+        if(text.substring(0, controleId.length) == controleId){
+          setState(() {
+            _state = text.substring(controleId.length+1) == '1';
+          });
+        }
+      }
+    );
+    conection.startConnection();
+  }
   //! scroll do color picker conflitando com scroll do list view
   Widget build(BuildContext context) {
-    // conection = ConnectionController(
-    //   broker: widget.controle.broker,
-    //   topic: widget.controle.topic,
-    //   onMensage: (String text){
-    //     print(text);
-    //   }
-    // );
-    // conection.startConnection();
+    
     return CardTemplate(
       controle: widget.controle,
       controleDelete: widget.delete,
@@ -35,8 +44,9 @@ class _CardRGBState extends State<CardRGB> {
       childWidget: Center(
         child: CircleColorPicker(
           initialColor: Colors.blue,
+          state: _state,
           onClick: (){
-            conection.publishMessage("teste");
+            
           },
           onChanged: (color){
             // setState(() {

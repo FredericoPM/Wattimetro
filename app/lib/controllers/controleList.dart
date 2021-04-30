@@ -16,17 +16,18 @@ class ControleList{
     await dataBase.insert(controle);
     await getAll();
   }
-  //! Ainda não implementado
   void delete(Controle controle) async{
     if(dataBase.db == null)
       await dataBase.DBconstructor();
-    print("delete");
+    await dataBase.delete(controle.id);
+    await getAll();
   }
-  //! Ainda não implementado
+  //! edit não ocorre
   void update(Controle controle) async{
     if(dataBase.db == null)
       await dataBase.DBconstructor();
-    print("update");
+    await dataBase.update(controle);
+    await getAll();
   }
   List<Controle> searchByName(String text){
     return _controles.where((item) => item.name.substring(0, text.length) == text).toList();

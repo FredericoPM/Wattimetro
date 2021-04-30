@@ -6,10 +6,12 @@ typedef ColorCodeBuilder = Widget Function(BuildContext context, Color color);
 
 class CircleColorPicker extends StatefulWidget {
   void Function() onClick;
+  bool state;
   CircleColorPicker({
     Key key,
     this.onClick,
     this.onChanged,
+    this.state = false,
     this.size = const Size(280, 280),
     this.strokeWidth = 2,
     this.thumbSize = 32,
@@ -122,7 +124,7 @@ class _CircleColorPickerState extends State<CircleColorPicker>
                               elevation: 0,
                               fillColor: Theme.of(context).accentColor,
                               child: Icon(
-                                Icons.lightbulb_outline,
+                                widget.state ? Icons.lightbulb : Icons.lightbulb_outline,
                                 size: 30.0,
                                 color: Theme.of(context).cardColor,
                               ),

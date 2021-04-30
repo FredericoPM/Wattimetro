@@ -1,4 +1,5 @@
 import 'dart:math';
+import 'package:app/controllers/conection.dart';
 import 'package:app/models/display.dart';
 import 'package:app/views/barChartModal.dart';
 import 'package:app/views/widgets/cardTemplate.dart';
@@ -31,7 +32,21 @@ class _CardBarChartState extends State<CardBarChart> {
       },
     );
   }
+  ConnectionController conection;
   @override
+  void initState() {
+    conection = ConnectionController(
+      broker: widget.display.broker,
+      topic: widget.display.topic,
+      onMensage: (String text){
+        String displayId = "D${widget.display.id}";
+        if(text.substring(0, displayId.length) == displayId){
+          
+        }
+      }
+    );
+    conection.startConnection();
+  }
   Widget build(BuildContext context) {
     return GestureDetector(
       onTap: () => _showModalBottomSheet(context),

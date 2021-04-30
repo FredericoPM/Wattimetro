@@ -1,3 +1,4 @@
+import 'package:app/controllers/conection.dart';
 import 'package:app/models/controle.dart';
 import 'package:app/views/widgets/cardTemplate.dart';
 import 'package:flutter/material.dart';
@@ -14,7 +15,21 @@ class CardSlider extends StatefulWidget {
 
 class _CardSliderState extends State<CardSlider> {
   double _sliderState = 0;
+  ConnectionController conection;
   @override
+  void initState() {
+    conection = ConnectionController(
+      broker: widget.controle.broker,
+      topic: widget.controle.topic,
+      onMensage: (String text){
+        String controleId = "C${widget.controle.id}";
+        if(text.substring(0, controleId.length) == controleId){
+          
+        }
+      }
+    );
+    conection.startConnection();
+  }
   Widget build(BuildContext context) {
     return CardTemplate(
       controle: widget.controle,

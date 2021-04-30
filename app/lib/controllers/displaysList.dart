@@ -14,19 +14,19 @@ class DisplayList{
     if(dataBase.db == null)
       await dataBase.DBconstructor();
     await dataBase.insert(display);
-    await getAll();
   }
-  //! Ainda não implementado
   void delete(Display display) async{
     if(dataBase.db == null)
       await dataBase.DBconstructor();
-    print("delete");
+    await dataBase.delete(display.id);
+    await getAll();
   }
-  //! Ainda não implementado
+  //! edit não ocorre
   void update(Display display) async{
     if(dataBase.db == null)
       await dataBase.DBconstructor();
-    print("update");
+    await dataBase.update(display);
+    await getAll();
   }
   List<Display> searchByName(String name){
     return _displays.where((display) => display.name == name).toList();
