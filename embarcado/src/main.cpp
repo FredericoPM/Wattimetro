@@ -25,13 +25,8 @@ float voltage = 0;
 float amps = 0;
 float kWh = 0;
 unsigned long lastmillis = millis();
- 
+unsigned long lastmillisData = millis();
 
-void myTimerEvent() {
-    kWh = kWh + emon.apparentPower*(millis()-lastmillis)/3600000000.0;
-    voltage = emon.Vrms;
-    amps = emon.Irms;
-}
 void initWiFi(void) {
     delay(10);
     Serial.println("------Conexao WI-FI------");
@@ -106,6 +101,29 @@ void reconnectWiFi(void) {
     Serial.println("IP obtido: ");
     Serial.println(WiFi.localIP());
 }
+
+void readData() {
+    kWh = kWh + emon.apparentPower*(millis()-lastmillis)/3600000000.0;
+    if((millis()-lastmillis)/3600000000.0 == 1){
+        lastmillis = millis();
+    }
+    voltage = emon.Vrms;
+    amps = emon.Irms;
+}
+void sendData(){
+    char data[10];
+    Serial.println(kWh);
+    sprintf(data, "1|%f", kWh);
+    MQTT.publish(TOPICO_PUBLISH, data);
+
+    Serial.println(voltage);
+    sprintf(data, "1|%f", voltage);
+    MQTT.publish(TOPICO_PUBLISH, data);
+
+    Serial.println(amps);
+    sprintf(data, "1|%f", amps);
+    MQTT.publish(TOPICO_PUBLISH, data);
+}
 void setup() {
   Serial.begin(115200);
   emon.voltage(35, vCalibration, 1.7); // Voltage: input pin, calibration, phase_shift
@@ -113,8 +131,11 @@ void setup() {
   initWiFi();
   initMQTT(); 
 }
- 
 void loop() {
-  VerificaConexoesWiFIEMQTT();
-  MQTT.loop();
+    if(lastmillisData - millis() == 1000.0){
+        lastmillisData = millis();
+        sendData();
+    }
+    VerificaConexoesWiFIEMQTT();
+    MQTT.loop();
 }
