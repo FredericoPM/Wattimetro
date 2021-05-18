@@ -14,7 +14,7 @@ class SideMenu extends StatelessWidget {
             Column(
               children:[
                 Container(
-                  height: 88,
+                  height: 120,
                   width: 1000,
                   child : DrawerHeader(
                     child: Text('Menu', style: TextStyle(fontSize: 28, fontWeight: FontWeight.w300),),

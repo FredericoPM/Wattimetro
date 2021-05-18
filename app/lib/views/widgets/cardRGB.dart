@@ -46,7 +46,9 @@ class _CardRGBState extends State<CardRGB> {
           initialColor: Colors.blue,
           state: _state,
           onClick: (){
-            
+            setState(() {
+              _state = !_state;
+            });
           },
           onChanged: (color){
             // setState(() {

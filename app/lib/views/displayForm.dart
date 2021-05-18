@@ -69,7 +69,7 @@ class _DisplayFormState extends State<DisplayForm> {
           child: Column(
             children: [
               Container(
-                height: MediaQuery.of(context).size.height-AppBar().preferredSize.height-148,
+                height: MediaQuery.of(context).size.height-AppBar().preferredSize.height - 170,
                 child: Form(
                   key: _formKey,
                   child: ListView(

@@ -39,7 +39,11 @@ class _CardOnOffState extends State<CardOnOff> {
       controleDelete: widget.delete,
       controleUpdate: widget.update,
       childWidget:RawMaterialButton(
-        onPressed: () {},
+        onPressed: () {
+          setState(() {
+            _state = !_state;
+          });
+        },
         elevation: 2.0,
         fillColor: Theme.of(context).accentColor,
         child: Icon(

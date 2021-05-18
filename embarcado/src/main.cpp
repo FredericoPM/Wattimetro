@@ -115,17 +115,17 @@ void sendData(){
     char data[13];
     kWh = ((int)kWh % 10000) + (kWh - (int)kWh);
     Serial.println(kWh);
-    sprintf(data, "1|%f", kWh);
+    sprintf(data, "D1|digital|%f", kWh);
     MQTT.publish(TOPICO_PUBLISH, data);
 
     voltage = ((int)voltage % 10000) + (voltage - (int)voltage);
     Serial.println(voltage);
-    sprintf(data, "1|%f", voltage);
+    sprintf(data, "D1|digital|%f", voltage);
     MQTT.publish(TOPICO_PUBLISH, data);
 
     amps = ((int)amps % 10000) + (amps - (int)amps);
     Serial.println(amps);
-    sprintf(data, "1|%f", amps);
+    sprintf(data, "D1|digital|%f", amps);
     MQTT.publish(TOPICO_PUBLISH, data);
 }
 void setup() {
@@ -138,11 +138,11 @@ void setup() {
     initMQTT();
 }
 void loop() {
-    // if(lastmillisData - millis() == 1000.0){
-    //     lastmillisData = millis();
-    //     readData();
-    //     sendData();
-    // }
+    if(lastmillisData - millis() == 1000.0){
+        lastmillisData = millis();
+        readData();
+        sendData();
+    }
     VerificaConexoesWiFIEMQTT();
     MQTT.loop();
 }
