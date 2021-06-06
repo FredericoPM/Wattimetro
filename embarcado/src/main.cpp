@@ -23,6 +23,7 @@ int BROKER_PORT = 1883;
 
 float voltage = 0;
 float amps = 0;
+float kW = 0;
 float kWh = 0;
 unsigned long lastmillis = millis();
 unsigned long lastmillisData = millis();
@@ -104,6 +105,7 @@ void initMQTT(void) {
 }
 
 void readData() {
+    kW = emon.apparentPower;
     kWh = kWh + emon.apparentPower*(millis()-lastmillis)/3600000000.0;
     if((millis()-lastmillis)/3600000000.0 == 1){
         lastmillis = millis();
@@ -113,19 +115,25 @@ void readData() {
 }
 void sendData(){
     char data[13];
-    kWh = ((int)kWh % 10000) + (kWh - (int)kWh);
+
+    kWh = ((int)kWh % 10000) + (kWh - (int)kW);
     Serial.println(kWh);
-    sprintf(data, "D1|digital|%f", kWh);
+    sprintf(data, "D0|digital|%f", kWh);
+    MQTT.publish(TOPICO_PUBLISH, data);
+
+    kW = ((int)kW % 10000) + (kW - (int)kW);
+    Serial.println(kW);
+    sprintf(data, "D1|digital|%f", kW);
     MQTT.publish(TOPICO_PUBLISH, data);
 
     voltage = ((int)voltage % 10000) + (voltage - (int)voltage);
     Serial.println(voltage);
-    sprintf(data, "D1|digital|%f", voltage);
+    sprintf(data, "D2|digital|%f", voltage);
     MQTT.publish(TOPICO_PUBLISH, data);
 
     amps = ((int)amps % 10000) + (amps - (int)amps);
     Serial.println(amps);
-    sprintf(data, "D1|digital|%f", amps);
+    sprintf(data, "D3|digital|%f", amps);
     MQTT.publish(TOPICO_PUBLISH, data);
 }
 void setup() {
@@ -138,7 +146,7 @@ void setup() {
     initMQTT();
 }
 void loop() {
-    if(lastmillisData - millis() == 1000.0){
+    if(lastmillisData - millis() == 10000.0){
         lastmillisData = millis();
         readData();
         sendData();

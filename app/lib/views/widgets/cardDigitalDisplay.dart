@@ -25,9 +25,9 @@ class _CardDigitalDisplayState extends State<CardDigitalDisplay> {
       onMensage: (String text){
         print(text);
         String displayId = "D${widget.display.id}";
-        if(text.substring(0, displayId.length) == displayId){
+        if(text.substring(0, displayId.length) == displayId && text.substring(displayId.length+1, displayId.length+8) == "digital"){
           setState(() {
-            _displayValue = text.substring(displayId.length+1);
+            _displayValue = text.substring(displayId.length+8);
           });
         }
       }
