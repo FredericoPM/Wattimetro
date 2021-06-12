@@ -15,7 +15,7 @@ class CardDigitalDisplay extends StatefulWidget {
 }
 
 class _CardDigitalDisplayState extends State<CardDigitalDisplay> {
-  String _displayValue = "0.0";
+  String _displayValue = "1.0";
   ConnectionController conection;
   @override
   void initState() {
@@ -27,7 +27,7 @@ class _CardDigitalDisplayState extends State<CardDigitalDisplay> {
         String displayId = "D${widget.display.id}";
         if(text.substring(0, displayId.length) == displayId && text.substring(displayId.length+1, displayId.length+8) == "digital"){
           setState(() {
-            _displayValue = text.substring(displayId.length+8);
+            _displayValue = text.substring(displayId.length+9);
           });
         }
       }

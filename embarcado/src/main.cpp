@@ -27,7 +27,6 @@ float kW = 0;
 float kWh = 0;
 unsigned long lastmillis = millis();
 unsigned long lastmillisData = millis();
-
 //Reconecta-se ao WiFi
 void reconnectWiFi(void) {
     //se já está conectado a rede WI-FI, nada é feito. 
@@ -67,8 +66,6 @@ void mqtt_callback(char* topic, byte* payload, unsigned int length) {
        char c = (char)payload[i];
        msg += c;
     }
-    
-    Serial.println(msg);
 }
 //Função: Reconecta-se ao broker MQTT em caso de sucesso na conexão ou reconexão, o subscribe dos tópicos é refeito.
 void reconnectMQTT(void) {
@@ -114,26 +111,26 @@ void readData() {
     amps = emon.Irms;
 }
 void sendData(){
-    char data[13];
+    char data[20];
 
     kWh = ((int)kWh % 10000) + (kWh - (int)kW);
     Serial.println(kWh);
-    sprintf(data, "D0|digital|%f", kWh);
+    sprintf(data, "D1|digital|%f", kWh);
     MQTT.publish(TOPICO_PUBLISH, data);
 
     kW = ((int)kW % 10000) + (kW - (int)kW);
     Serial.println(kW);
-    sprintf(data, "D1|digital|%f", kW);
+    sprintf(data, "D2|digital|%f", kW);
     MQTT.publish(TOPICO_PUBLISH, data);
 
     voltage = ((int)voltage % 10000) + (voltage - (int)voltage);
     Serial.println(voltage);
-    sprintf(data, "D2|digital|%f", voltage);
+    sprintf(data, "D3|digital|%f", voltage);
     MQTT.publish(TOPICO_PUBLISH, data);
 
     amps = ((int)amps % 10000) + (amps - (int)amps);
     Serial.println(amps);
-    sprintf(data, "D3|digital|%f", amps);
+    sprintf(data, "D4|digital|%f", amps);
     MQTT.publish(TOPICO_PUBLISH, data);
 }
 void setup() {
@@ -146,11 +143,11 @@ void setup() {
     initMQTT();
 }
 void loop() {
-    if(lastmillisData - millis() == 10000.0){
+    VerificaConexoesWiFIEMQTT();
+    if(millis() - lastmillisData > 5000){
         lastmillisData = millis();
         readData();
         sendData();
     }
-    VerificaConexoesWiFIEMQTT();
     MQTT.loop();
 }
