@@ -27,7 +27,7 @@ class _CardDigitalDisplayState extends State<CardDigitalDisplay> {
         String displayId = "D${widget.display.id}";
         if(text.substring(0, displayId.length) == displayId && text.substring(displayId.length+1, displayId.length+8) == "digital"){
           setState(() {
-            _displayValue = text.substring(displayId.length+9);
+            _displayValue = text.substring(displayId.length+9, displayId.length+14 > text.length ? text.length : displayId.length+14);
           });
         }
       }
