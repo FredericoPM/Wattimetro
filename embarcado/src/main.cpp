@@ -103,7 +103,7 @@ void initMQTT(void) {
 
 void readData() {
     emon.calcVI(20, 2000);
-    kW = emon.apparentPower;
+    kW = emon.realPower;
     Wh += kW * ((millis() - lastmillis)/3600000.0);
     if((millis()-lastmillis)/3600000.0 == 1){
         lastmillis = millis();
